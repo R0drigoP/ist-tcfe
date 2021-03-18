@@ -1,0 +1,27 @@
+Circuito t1
+
+*Guardar correntes
+.options savecurrents
+
+*Resistencias
+R1 3 4 1.04005394176k;
+R2 2 3 2.07146823978k;
+R3 3 6 3.06015694112k; fixo
+R4 5 6 4.13750728298k;
+R5 6 1 3.13205467735k;
+R6 8 7 2.01065636997k; fixo
+R7 7 0 1.00318758033k;
+
+*Fontes Independentes
+Va 4 5 5.14514577871V
+Id 0 1 DC 1.03830911265m
+Vc 5 8 0V; nó 8 ligado a nó 5 e R6
+
+*Fontes Dependentes
+Hc 6 0 Vc 8.3495605781k;
+Gb 1 2 (3,6) 7.04881622155m;
+
+*Simulação
+.op
+
+.end
