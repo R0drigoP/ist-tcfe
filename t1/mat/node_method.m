@@ -26,4 +26,4 @@ Z, Z, Z, Z, 1/R6, Z, -(1/R6+1/R7)
 
 B=[Id; Z; Z; Va; Z; Z; Z];
 
-A\B 
+A\B

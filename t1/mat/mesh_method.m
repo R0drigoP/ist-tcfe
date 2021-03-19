@@ -25,7 +25,9 @@ Z, Z, Z, -U
 B=[Va; Z; Z; Id];
 
 X=A\B;
-printf("$I'_A = %.15f$\n", X(1))
-printf("$I'_B = %.15f$\n", X(2))
-printf("$I'_C = %.15f$\n", X(3))
-printf("$I'_D = %.15f$\n", X(4))
+printf("op_TAB\n")
+printf("I'_A = %.15f\n", X(1))
+printf("I'_B = %.15f\n", X(2))
+printf("I'_C = %.15f\n", X(3))
+printf("I'_D = %.15f\n", X(4))
+printf("op_END\n")
