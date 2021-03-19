@@ -1,10 +1,26 @@
 \section{Theoretical Analysis}
 \label{sec:analysis}
 
-In this section, the circuit shown in Figure is analysed
-theoretically, in terms of its time and frequency responses.
+In this section, the circuit shown earlier in Figure \ref{fig:circuit} is analyzed, using both node and mesh methods, as explained in section \ref{introduction}. It is important to notice that node 0 corresponds to ground, meaning we assign it has having null potential.
+\par
+%A table with all the given values can be seen in table \ref{tab:value}
+**tabela com os valores
 
-\section{Time response}
+\subsection{Node method}
+Using Kirchhoff Current Law (KCL) at all nodes, we end up with these equations:
+
+\begin{cases}
+  $I_d = \frac{V_1 - V_6}{R_5} + I_b$\\
+  $I_b = \frac{V_2 - V_3}{R2}$\\
+  $\frac{V_2 - V_3}{R_2} = \frac{V_3 - V_4}{R_1} + \frac{V_3 - V_6}{R_3}$\\
+  $V_4 - V_5 = V_a$\\
+  $\frac{V_6 - V_5}{R_4} = \frac{V_5 - V_7}{R_1} + \frac{V_4 - V_3}{R_1}$\\ %Dizer que esta ultima parcela é Ir4->r3?
+\end{cases}
+Where $V_i$ represents the voltage at node $i$.
+  
+
+
+
 
 The circuit consists of a single V-R-C loop where a current $i(t)$ circulates. The
 voltage source $v_I(t)$ drives its input, and the output voltage $v_O(t)$ is taken from
