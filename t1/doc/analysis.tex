@@ -8,16 +8,37 @@ In this section, the circuit shown earlier in Figure \ref{fig:circuit} is analyz
 
 \subsection{Node method}
 Using Kirchhoff Current Law (KCL) at all nodes, we end up with these equations:
-
+\begin{equation*}
 \begin{cases}
-  $I_d = \frac{V_1 - V_6}{R_5} + I_b$\\
-  $I_b = \frac{V_2 - V_3}{R_2}$\\
-  $\frac{V_2 - V_3}{R_2} = \frac{V_3 - V_4}{R_1} + \frac{V_3 - V_6}{R_3}$\\
-  $V_4 - V_5 = V_a$\\
-  $\frac{V_6 - V_5}{R_4} = \frac{V_5 - V_7}{R_1} + \frac{V_4 - V_3}{R_1}$\\ %Dizer que esta ultima parcela é Ir4->r3?
+  I_d = \frac{V_1 - V_6}{R_5} + I_b \\
+  I_b = \frac{V_2 - V_3}{R_2} \\
+  \frac{V_2 - V_3}{R_2} = \frac{V_3 - V_4}{R_1} + \frac{V_b}{R_3} \\
+  V_4 - V_5 = V_a \\
+  \frac{V_6 - V_5}{R_4} = \frac{V_5 - V_7}{R_1} + \frac{V_4 - V_3}{R_1} \\ %Dizer que esta ultima parcela é Ir4->r3?
+  V_6 = V_c \\
+  \frac{V_5 - V_7}{R_6} = \frac{V_7}{R_7} \\
+  I_b = K_bV_b = K_b(V_3 - V_6) \\
+  V_c = K_cI_c = K_c \frac{V_5 - V_7}{R_6} \\
 \end{cases}
+\end{equation*}
 Where $V_i$ represents the voltage at node $i$.
-  
+\par
+Substituting variables by their numeric number given in table **, and solving this sistem of linear equations using \textit{Octave}, we end up with: **results**
+\par
+We can get the current flowin throuh each branch using Ohm's law
+(Mostrar tabelas com as correntes ou não é necessário?)
+
+\subsection{Mesh method}
+Using Kirchhoff Voltage Law (KVL) in all meshes, we can write these equations:
+\begin{equation*}
+\begin{cases}
+  R_1I'_A + R_3(I'_A + I'_B) + R_4(I'_A + I'_C) = V_a \\
+  I'_B = I_b = K_bV_b = K_bR_3(I'_A + I'_B) \\
+  R_4(I'_A+I'_C) + R_6I'_C + R_7I'_C = K_cI_c = K_cI'_C \\
+  I'_D = -I_d \\
+\end{cases}
+\end{equation*}
+
 
 
 
