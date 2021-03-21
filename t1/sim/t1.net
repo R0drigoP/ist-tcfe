@@ -1,4 +1,5 @@
-Circuito t1
+
+*Circuito t1
 
 *Guardar correntes
 .options savecurrents
@@ -21,8 +22,38 @@ Vc 5 8 0V; nó 8 ligado a nó 5 e R6
 Hc 6 0 Vc 8.3495605781k;
 Gb 1 2 (3,6) 7.04881622155m;
 
-*Simulação
-.op
+.control
 
+*Simulação
+op
+
+echo "I_TAB"
+print @gb[i]
+print @r1[i]
+print @r2[i]
+print @r3[i]
+print @r4[i]
+print @r5[i]
+print @r6[i]
+print @r7[i]
+print hc#branch
+print va#branch
+echo "I_END"
+
+
+
+echo  "V_TAB"
+print V(1)
+print V(2)
+print V(3)
+print V(4)
+print V(5)
+print V(6)
+print V(7)
+print V(8)
+echo  "V_END"
+
+quit
+.endc
 
 .end
