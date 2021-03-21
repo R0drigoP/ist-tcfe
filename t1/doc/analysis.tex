@@ -25,7 +25,7 @@ Using Kirchhoff Current Law (KCL) at all nodes, we end up with these equations:
 Where $V_i$ represents the voltage at node $i$. It is important to notice that, because nodes 4 and 5 were connected to an independent voltage source, $V_a$, we use the source equation on equation \ref{eq:node}.4, and for equation \ref{eq:node}.5, we use the super-node 4-5. We used a similar though process for equation \ref{eq:node}.6.
 \par
 Substituting variables by their numeric number given in table \ref{tab:node}, and solving this system of linear equations using \textit{Octave}, we end up with:
-\begin{table}[h]
+\begin{table}[H]
   \centering
   \begin{tabular}{|l|r|}
     \hline    
@@ -51,7 +51,7 @@ Using Kirchhoff Voltage Law (KVL) in all meshes, we can write these equations:
 \end{cases}
 \end{equation}
 Because mesh B was connected to a current source, we can write the equation \ref{eq:mesh}.B for this mesh. Similarly, we can write equation \ref{eq:mesh}.D, for mesh D. As done in the previous subsection, we can replace the variables by their numeric number given in table \ref{tab:mesh}. Solving this system of linear equations using \textit{Octave}, we end up with:
-\begin{table}[h]
+\begin{table}[H]
   \centering
   \begin{tabular}{|l|r|}
     \hline
@@ -62,6 +62,19 @@ Because mesh B was connected to a current source, we can write the equation \ref
    and expressed in Ampere; other variables are of type {\it voltage} and expressed in
     Volt.}
   \label{tab:mesh}
+\end{table}
+Using this information, we can now solve for the current flowing in each component, as seen in table \ref{tab:comp}
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline
+        {\bf Component} & {\bf Current (A)} \\ \hline
+        \input{../mat/op2_tab}
+  \end{tabular}
+  \caption{Operating point. A variable preceded by @ is of type {\em current}
+   and expressed in Ampere; other variables are of type {\it voltage} and expressed in
+    Volt.}
+  \label{tab:comp}
 \end{table}
 \par
 
