@@ -15,6 +15,21 @@ Kc=double(8.3495605781e3);
 Z=double(0.0);
 U=double(1.0);
 
+
+A2=[
+1/R5, Z, Kb, Z, Z, -(1/R5+Kb), Z; 
+Z, 1/R2, -(1/R2+Kb), Z, Z, Kb, Z;
+Z, 1/R2, -(1/R1 + 1/R2 + 1/R6), 1/R1, Z, 1/R6, Z;
+Z, Z, Z, U, -U, Z, Z;
+Z, Z, 1/R1, -1/R1, -(1/R4+1/R6), 1/R4, 1/R6;
+Z, Z, Z, Z, Kc, -R6, -Kc;
+Z, Z, Z, Z, 1/R6, Z, -(1/R6+1/R7)
+];
+
+B2=[Id; Z; Z; Va; Z; Z; Z];
+
+X2=A2\B2;
+
 A=[
 R1+R2+R4, R3, R4, Z;
 Kb*R3, Kb*R3-U, Z, Z;
@@ -31,3 +46,13 @@ printf("$I'_B$ = %.15f\n", X(2))
 printf("$I'_C$ = %.15f\n", X(3))
 printf("$I'_D$ = %.15f\n", X(4))
 printf("op_END\n")
+
+printf("op1_TAB\n")
+printf("$V_1$ = %.15f\n", X2(1))
+printf("$V_2$ = %.15f\n", X2(2))
+printf("$V_3$ = %.15f\n", X2(3))
+printf("$V_4$ = %.15f\n", X2(4))
+printf("$V_5$ = %.15f\n", X2(5))
+printf("$V_6$ = %.15f\n", X2(6))
+printf("$V_7$ = %.15f\n", X2(7))
+printf("op1_END\n")
