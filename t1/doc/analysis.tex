@@ -22,7 +22,7 @@ Using Kirchhoff Current Law (KCL) at all nodes, we end up with these equations:
   V_c = K_cI_c = K_c \frac{V_5 - V_7}{R_6} \\
 \end{cases}
 \end{equation}
-Where $V_i$ represents the voltage at node $i$. It is important to notice that, because nodes 4 and 5 were connected to an independent voltage source, $V_a$, we use the source equation on equation \ref{eq:node}.4, and for equation \ref{eq:node}.5, we use the super-node 4-5. We used a similar though process for equation \ref{eq:node}.6.
+Where $V_i$ represents the voltage at node $i$. It is important to notice that, because nodes 4 and 5 were connected to a voltage source, $V_a$, we use the source equation on equation \ref{eq:node}.4, and for equation \ref{eq:node}.5, we consider the super-node 4-5. We used a similar though process for equation \ref{eq:node}.6.
 \par
 Substituting variables by their numeric number given in table \ref{tab:node}, and solving this system of linear equations using \textit{Octave}, we end up with:
 \begin{table}[H]
@@ -32,9 +32,7 @@ Substituting variables by their numeric number given in table \ref{tab:node}, an
     {\bf Node number} & {\bf Voltage (V)} \\ \hline
     \input{../mat/op1_tab}
   \end{tabular}
-  \caption{Operating point. A variable preceded by @ is of type {\em current}
-    and expressed in Ampere; other variables are of type {\it voltage} and expressed in
-    Volt.}
+  \caption{Node voltage obtained by the theorethical analysis.}
   \label{tab:node}
 \end{table}
 \par
@@ -58,9 +56,7 @@ Because mesh B was connected to a current source, we can write the equation \ref
         {\bf Mesh name} & {\bf Current (A)} \\ \hline
         \input{../mat/op_tab}
   \end{tabular}
-  \caption{Operating point. A variable preceded by @ is of type {\em current}
-   and expressed in Ampere; other variables are of type {\it voltage} and expressed in
-    Volt.}
+  \caption{Theorethical Current flowing in each mesh.}
   \label{tab:mesh}
 \end{table}
 Using this information, we can now solve for the current flowing in each component, as seen in table \ref{tab:comp}
@@ -71,9 +67,7 @@ Using this information, we can now solve for the current flowing in each compone
         {\bf Component} & {\bf Current (A)} \\ \hline
         \input{../mat/op2_tab}
   \end{tabular}
-  \caption{Operating point. A variable preceded by @ is of type {\em current}
-   and expressed in Ampere; other variables are of type {\it voltage} and expressed in
-    Volt.}
+  \caption{Theorethical Current flowing through each component.}
   \label{tab:comp}
 \end{table}
 \par
