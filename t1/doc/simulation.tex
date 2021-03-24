@@ -20,9 +20,7 @@ Table \ref{tab:node_sim} shows the node voltages obtained using the simulated op
     {\bf Node number} & {\bf Voltage (V)} \\ \hline
     \input{../sim/V_tab}
   \end{tabular}
-  \caption{Operating point. A variable preceded by @ is of type {\em current}
-    and expressed in Ampere; other variables are of type {\it voltage} and expressed in
-    Volt.}
+  \caption{Node voltage obtained by the simulation analysis.}
   \label{tab:node_sim}
 \end{table}
 Compared to the theoretical analysis results, we notice that both are similar, having small numeric differences between them ($\sim$ 0.2\%). The most likely cause of this is due to the fact that \textit{Octave} and \textit{Ngspice} have different numerical precision.
@@ -37,9 +35,7 @@ Table \ref{tab:mesh_sim} shows the current flowing in each component using the s
     {\bf Component} & {\bf Current (A)} \\ \hline
     \input{../sim/I_tab}
   \end{tabular}
-  \caption{Operating point. A variable preceded by @ is of type {\em current}
-    and expressed in Ampere; other variables are of type {\it voltage} and expressed in
-    Volt.}
+  \caption{Simulated Current flowing through each component.}
   \label{tab:mesh_sim}
 \end{table}
 
