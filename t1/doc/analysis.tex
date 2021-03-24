@@ -30,7 +30,6 @@ $K_c$ & 8.3495605781 $k\Omega$ \\ \hline
 Using Kirchhoff Current Law (KCL) at all nodes, we end up with these equations:
 \begin{equation}\label{eq:node}
   \begin{cases}
-  (0) V_0 = 0V \\
   (1) I_d = \frac{V_1 - V_6}{R_5} + I_b \\
   (2) I_b = \frac{V_2 - V_3}{R_2} \\
   (3) \frac{V_2 - V_3}{R_2} = \frac{V_3 - V_4}{R_1} + \frac{V_b}{R_3} \\
@@ -44,7 +43,7 @@ Using Kirchhoff Current Law (KCL) at all nodes, we end up with these equations:
 \end{equation}
 Where $V_i$ represents the voltage at node $i$. It is important to notice that, because nodes 4 and 5 were connected to a voltage source, $V_a$, we use the source equation on equation \ref{eq:node}.4, and for equation \ref{eq:node}.5, we consider the super-node 4-5. We used a similar though process for equation \ref{eq:node}.6.
 \par
-Substituting variables by their numeric number given in table \ref{tab:values}, and solving this system of linear equations using \textit{Octave}, we end up with:
+simplifying these expressions and substituting variables by their numeric number given in table \ref{tab:values}, and solving this system of linear equations using \textit{Octave}, we end up with:
 \begin{table}[H]
   \centering
   \begin{tabular}{|l|r|}
@@ -68,7 +67,7 @@ Using Kirchhoff Voltage Law (KVL) in all meshes, we can write these equations:
   (D) I'_D = -I_d \\
 \end{cases}
 \end{equation}
-Because mesh B was connected to a current source, we can write the equation \ref{eq:mesh}.B for this mesh. Similarly, we can write equation \ref{eq:mesh}.D, for mesh D. As done in the previous subsection, we can replace the variables by their numeric number given in table \ref{tab:mesh}. Solving this system of linear equations using \textit{Octave}, we end up with:
+Because mesh B was connected to a current source, we can write the equation \ref{eq:mesh}.B for this mesh. Similarly, we can write equation \ref{eq:mesh}.D, for mesh D. As done in the previous subsection, we can rearrange terms and replace the variables by their numeric number given in table \ref{tab:mesh}. Solving this system of linear equations using \textit{Octave}, we end up with:
 \begin{table}[H]
   \centering
   \begin{tabular}{|l|r|}
