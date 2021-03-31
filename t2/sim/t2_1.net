@@ -1,0 +1,59 @@
+*Circuito t2_1
+
+*Guardar correntes
+.options savecurrents
+
+*Resistências
+R1 1 2 1.04005394176k;
+R2 2 3 2.07146823978k;
+R3 2 5 3.06015694112k; terminais fixos
+R4 GND 5 4.13750728298k;
+R5 5 6 3.13205467735k;
+R6 9 7 2.01065636997k; terminais fixos
+R7 7 8 1.00318758033k;
+
+*Fontes Independentes
+Vs 1 GND 5.14514577871V
+V0 GND 9 0V; terminais fixos
+
+*Fontes Dependentes
+Hd 5 8 V0 8.3495605781k;
+Gb 6 3 (2,5) 7.04881622155m;
+
+*Condesador funciona como circuito aberto para t<0
+
+.control
+
+*Simulação
+op
+
+echo "I_TAB"
+print @gb[i]
+print @r1[i]
+print @r2[i]
+print @r3[i]
+print @r4[i]
+print @r5[i]
+print @r6[i]
+print @r7[i]
+print hd#branch
+print vs#branch
+echo "I_END"
+
+
+
+echo  "V_TAB"
+print V(1)
+print V(2)
+print V(3)
+print V(5)
+print V(6)
+print V(7)
+print V(8)
+print V(9)
+echo  "V_END"
+
+quit
+.endc
+
+.end
