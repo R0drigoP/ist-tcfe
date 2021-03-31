@@ -1,0 +1,96 @@
+\section{Theoretical Analysis}
+\label{sec:analysis}
+
+In this section, the circuit shown earlier in Figure \ref{fig:cir_intro} is analyzed, using both node and mesh methods, as explained in section \ref{sec:introduction}. It is important to notice that node 0 corresponds to ground, meaning we assign it has having null potential.
+\par
+A table with all the given values can be seen in table \ref{tab:values}
+
+\begin{table}[H]
+  \centering
+\begin{tabular}{|l|r|}
+\hline
+{\bf Name} & {\bf Values}         \\ \hline
+$R_1$ & 1.04005394176 $k\Omega$ \\ \hline
+$R_2$ & 2.07146823978 $k\Omega$ \\ \hline
+$R_3$ & 3.06015694112 $k\Omega$ \\ \hline
+$R_4$ & 4.13750728298 $k\Omega$ \\ \hline
+$R_5$ & 3.13205467735 $k\Omega$ \\ \hline
+$R_6$ & 2.01065636997 $k\Omega$ \\ \hline
+$R_7$ & 1.00318758033 $k\Omega$ \\ \hline
+$V_a$ & 5.14514577871 $V$ \\ \hline
+$I_d$ & 1.03830911265 $mA$ \\ \hline
+$K_b$ & 7.04881622155 $mS$ \\ \hline
+$K_c$ & 8.3495605781 $k\Omega$ \\ \hline
+\end{tabular}
+\caption{Given values for the circuit components.}
+\label{tab:values}
+\end{table}
+
+\subsection{Node method}
+Using Kirchhoff Current Law (KCL) at all nodes, we end up with these equations:
+\begin{equation}\label{eq:node}
+  \begin{cases}
+  (1) I_d = \frac{V_1 - V_6}{R_5} + I_b \\
+  (2) I_b = \frac{V_2 - V_3}{R_2} \\
+  (3) \frac{V_2 - V_3}{R_2} = \frac{V_3 - V_4}{R_1} + \frac{V_3 - V_6}{R_3} \\
+  (4) V_4 - V_5 = V_a \\
+  (5) \frac{V_6 - V_5}{R_4} = \frac{V_5 - V_7}{R_6} + \frac{V_4 - V_3}{R_1} \\ %Dizer que esta ultima parcela é Ir4->r3?
+  (6) V_6 = V_c \\
+  (7) \frac{V_5 - V_7}{R_6} = \frac{V_7}{R_7} \\
+  I_b = K_bV_b = K_b(V_3 - V_6) \\
+  V_c = K_cI_c = K_c \frac{V_5 - V_7}{R_6} \\
+\end{cases}
+\end{equation}
+Where $V_i$ represents the voltage at node $i$. It is important to notice that, because nodes 4 and 5 were connected to a voltage source, $V_a$, we use the source equation on equation \ref{eq:node}.4, and for equation \ref{eq:node}.5, we consider the super-node 4-5. We used a similar though process for equation \ref{eq:node}.6.
+\par
+simplifying these expressions and substituting variables by their numeric number given in table \ref{tab:values}, and solving this system of linear equations using \textit{Octave}, we end up with:
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Node number} & {\bf Voltage (V)} \\ \hline
+    \input{../mat/op1_tab}
+  \end{tabular}
+  \caption{Node voltage obtained by the theorethical analysis.}
+  \label{tab:node}
+\end{table}
+\par
+We can get the current flowing through each branch using Ohm's law.
+
+\subsection{Mesh method}
+Using Kirchhoff Voltage Law (KVL) in all meshes, we can write these equations:
+\begin{equation}\label{eq:mesh}
+\begin{cases}
+  (A) R_1I'_A + R_3(I'_A + I'_B) + R_4(I'_A + I'_C) = V_a \\
+  (B) I'_B = I_b = K_bV_b = K_bR_3(I'_A + I'_B) \\
+  (C) R_4(I'_A+I'_C) + R_6I'_C + R_7I'_C = K_cI_c = K_cI'_C \\
+  (D) I'_D = -I_d \\
+\end{cases}
+\end{equation}
+Because mesh B was connected to a current source, we can write the equation \ref{eq:mesh}.B for this mesh. Similarly, we can write equation \ref{eq:mesh}.D, for mesh D. As done in the previous subsection, we can rearrange terms and replace the variables by their numeric number given in table \ref{tab:mesh}. Solving this system of linear equations using \textit{Octave}, we end up with:
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline
+        {\bf Mesh name} & {\bf Current (A)} \\ \hline
+        \input{../mat/op_tab}
+  \end{tabular}
+  \caption{Theorethical Current flowing in each mesh.}
+  \label{tab:mesh}
+\end{table}
+Using this information, we can now solve for the current flowing in each component, as seen in table \ref{tab:comp}
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline
+        {\bf Component} & {\bf Current (A)} \\ \hline
+        \input{../mat/op2_tab}
+  \end{tabular}
+  \caption{Theorethical Current flowing through each component.}
+  \label{tab:comp}
+\end{table}
+\par
+
+%=========================================================================================================================0
+
+

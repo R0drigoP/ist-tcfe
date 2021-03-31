@@ -1,0 +1,44 @@
+\section{Simulation Analysis}
+\label{sec:simulation}
+
+For the circuit simulation we used the \textit{Ngspice} software. It is important to point that, for this analysis we needed to add an independent voltage source with value 0V to compute the current $I_c$, needed on the dependent voltage source, $V_c$. Figure \ref{fig:cir_sim} represents the simulated circuit
+
+\begin{figure}[H] \centering
+\includegraphics[width=0.7\linewidth]{cir_sim.pdf}
+\caption{Simulated circuit.}
+\label{fig:cir_sim}
+\end{figure}
+
+\subsection{Node Analysis}
+\label{subsec:node_sim}
+
+Table \ref{tab:node_sim} shows the node voltages obtained using the simulated operating point results for the circuit under analysis
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Node number} & {\bf Voltage (V)} \\ \hline
+    \input{../sim/V_tab}
+  \end{tabular}
+  \caption{Node voltage obtained by the simulation analysis.}
+  \label{tab:node_sim}
+\end{table}
+Compared to the theoretical analysis results, we notice that both are similar, having small numeric differences between them ($\sim$ 0.2\%). The most likely cause of this is due to the fact that \textit{Octave} and \textit{Ngspice} have different numerical precision.
+
+\subsection{Mesh Analysis}
+
+Table \ref{tab:mesh_sim} shows the current flowing in each component using the simulated operating point results for the circuit under analysis
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Component} & {\bf Current (A)} \\ \hline
+    \input{../sim/I_tab}
+  \end{tabular}
+  \caption{Simulated Current flowing through each component.}
+  \label{tab:mesh_sim}
+\end{table}
+
+Compared to the theoretical analysis results, we notice that, like in subsection \ref{subsec:node_sim}, both are similar, having differences $\sim$ $1\times10^{-4}$\%. We think the causes are the same that we described earlier.
+
+
