@@ -28,6 +28,20 @@ B2=[Vs; Z; Z; Z; Ic; Z; -Ic];
 
 X2=A2\B2;
 
+Vx=X2(5)-X2(7);
+
+A=[
+-(1/R1+1/R2+1/R3), 1/R2, 1/R3, Z, Z;
+1/R2+Kb, -1/R2, -Kb, Z, Z; 
+Z, Z, U, Z, -U+Kd/(R6+R7);
+Z, Z, Z, -U, U;
+1/R3-Kb, Z, -(1/R4+1/R3)+Kb, Z, 1/(R6+R7);
+];
+
+B=[Z; Z; Z; Vx; Z];
+
+X=A\B
+
 printf("op1_TAB\n")
 printf("$V_1$ = %.15e\n", X2(1))
 printf("$V_2$ = %.15e\n", X2(2))
@@ -37,6 +51,15 @@ printf("$V_6$ = %.15e\n", X2(5))
 printf("$V_7$ = %.15e\n", X2(6))
 printf("$V_8$ = %.15e\n", X2(7))
 printf("op1_END\n")
+
+printf("op_TAB\n")
+printf("$V_x$ = %.15e\n", Vx)
+printf("$V_2$ = %.15e\n", X(1))
+printf("$V_3$ = %.15e\n", X(2))
+printf("$V_5$ = %.15e\n", X(3))
+printf("$V_6$ = %.15e\n", X(4))
+printf("$V_8$ = %.15e\n", X(5))
+printf("op_END\n")
 
 #printf("op2_TAB\n")
 #printf("$I_b$ = %.15e\n", X(2))
