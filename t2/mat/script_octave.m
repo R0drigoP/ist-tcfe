@@ -28,6 +28,27 @@ B2=[Vs; Z; Z; Z; Ic; Z; -Ic];
 
 X2=A2\B2;
 
+
+
+Vx=X2(5)-X2(7);
+
+A=[
+-(1/R1+1/R2+1/R3), 1/R2, 1/R3, Z, Z;
+1/R2+Kb, -1/R2, -Kb, Z, Z; 
+Z, Z, U, Z, -U+Kd/(R6+R7);
+Z, Z, Z, U, -U;
+1/R3-Kb, Z, -(1/R4+1/R3)+Kb, Z, 1/(R6+R7);
+];
+
+B=[Z; Z; Z; Vx; Z];
+
+X=A\B
+
+Ix=X(4)/R5;
+Req=Vx/Ix;
+
+
+
 printf("op1_TAB\n")
 printf("$V_1$ = %.15e\n", X2(1))
 printf("$V_2$ = %.15e\n", X2(2))
@@ -38,15 +59,31 @@ printf("$V_7$ = %.15e\n", X2(6))
 printf("$V_8$ = %.15e\n", X2(7))
 printf("op1_END\n")
 
-#printf("op2_TAB\n")
-#printf("$I_b$ = %.15e\n", X(2))
-#printf("$R_1[i]$ = %.15e\n", X(1))
-#printf("$R_2[i]$ = %.15e\n", X(2))
-#printf("$R_3[i]$ = %.15e\n", X(1)+X(2))
-#printf("$R_4[i]$ = %.15e\n", X(1)+X(3))
-#printf("$R_5[i]$ = %.15e\n", X(2)-Id)
-#printf("$R_6[i]$ = %.15e\n", X(3))
-#printf("$R_7[i]$ = %.15e\n", X(3))
-#printf("$V_c[i]$ = %.15e\n", -X(3)+Id)
-#printf("$V_a[i]$ = %.15e\n", -X(1))
-#printf("op2_END\n")
+printf("op_TAB\n")
+printf("$V_x$ = %.15e\n", Vx)
+printf("$V_2$ = %.15e\n", X(1))
+printf("$V_3$ = %.15e\n", X(2))
+printf("$V_5$ = %.15e\n", X(3))
+printf("$V_6$ = %.15e\n", X(4))
+printf("$V_8$ = %.15e\n", X(5))
+printf("$I_x$ = %.15e\n", Ix)
+printf("$R_eq$ = %.15e\n", Req)
+printf("op_END\n")
+
+
+%time axis: 0 to 10ms with 1us steps
+t=0:1e-6:20e-3; %s
+
+v6=Vx*exp(-t/(Req*C));
+
+hf = figure ();
+plot (t, v6, "g");
+hold on;
+
+xlabel ("t[ms]");
+ylabel ("v6(t), vo(t) [V]");
+print (hf, "forced.eps", "-depsc");
+
+
+
+
