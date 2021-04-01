@@ -15,7 +15,7 @@ R7 7 8 1.00318758033k;
 *Fontes Independentes
 Vs GND 1 0V
 V0 GND 9 0V; terminais fixos
-Vx 6 8 -8.554671V; V(6) - V(8), para manter ddp entre os 2 iguais
+Vx 6 8 8.554671V; V(6) - V(8), para manter ddp entre os 2 iguais
 
 *Fontes Dependentes
 Hd 5 8 V0 8.3495605781k;
@@ -39,8 +39,6 @@ print hd#branch
 print vs#branch
 print vx#branch
 echo "I_END"
-
-
 
 echo  "V_TAB"
 print V(1)
