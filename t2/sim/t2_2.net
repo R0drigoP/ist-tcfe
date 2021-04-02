@@ -13,7 +13,7 @@ R6 9 7 2.01065636997k; terminais fixos
 R7 7 8 1.00318758033k;
 
 *Fontes Independentes
-Vs GND 1 0V
+Vs 1 GND 0V
 V0 GND 9 0V; terminais fixos
 Vx 6 8 8.554671V; V(6) - V(8), para manter ddp entre os 2 iguais
 

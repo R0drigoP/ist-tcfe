@@ -13,7 +13,7 @@ R6 9 7 2.01065636997k; terminais fixos
 R7 7 8 1.00318758033k;
 
 *Fontes Independentes
-Vs GND 1 0V
+Vs 1 GND 0V
 V0 GND 9 0V; terminais fixos
 
 *Fontes Dependentes
@@ -21,7 +21,7 @@ Hd 5 8 V0 8.3495605781k;
 Gb 6 3 (2,5) 7.04881622155m;
 
 *Condensador
-C1 6 8 1.03830911265 u
+C1 6 8 1.03830911265u
 
 .ic V(6)=8.55467 V(8)=0
 

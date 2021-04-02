@@ -13,7 +13,7 @@ R6 9 7 2.01065636997k; terminais fixos
 R7 7 8 1.00318758033k;
 
 *Fontes Independentes
-Vs GND 1 sin(0 1 1k)
+Vs 1 GND sin(0 1 1k)
 V0 GND 9 0V; terminais fixos
 
 *Fontes Dependentes
@@ -21,18 +21,20 @@ Hd 5 8 V0 8.3495605781k;
 Gb 6 3 (2,5) 7.04881622155m;
 
 *Condensador
-C 6 8 1.03830911265 u
+C 6 8 1.03830911265u
 
-*.ic V(6)=-8.55467e+00 V(8)=0
+.ic V(6)=8.55467e+00 V(8)=0
 
 .control
 
 *Simulação
 *op
 
-tran 1ms 20ms
-plot V(6)
-plot V(1)
+tran 0.01ms 20ms
+plot V(6) V(1)
+
+*ac dec 10 0.1k 1MEG 
+*plot db(6/1)
 
 *echo "I_TAB"
 *print @gb[i]
