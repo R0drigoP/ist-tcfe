@@ -89,8 +89,10 @@ printf("$R_eq$ = %.15e\n", Req)
 printf("op_END\n")
 
 
-%time axis: 0 to 10ms with 1us steps
+%time axis: 0 to 20ms with 1us steps
 t=0:1e-6:20e-3; %s
+
+#Condição inicial com o ground em V4
 
 v6=Vx*exp(-t/(Req*C));
 
@@ -103,5 +105,29 @@ ylabel ("v6(t), vo(t) [V]");
 print (hf, "forced.eps", "-depsc");
 
 
+
+%time axis: -5 to 0ms with 1us steps
+t2=-5e-3:1e-6:0;
+
+vn=Vx*exp(-t/(Req*C));
+vf=abs(X4(5))*cos(w*t+arg(X4(5)));
+vt=vn+vf;
+vi=Vx+0*t2;
+
+vsp=cos(w*t-pi/2);
+vsn=Vs+0*t2;
+
+h2 = figure ();
+plot (t, vt, "g3");
+hold on;
+plot (t2, vi, "g3");
+hold on;
+plot (t, vsp, "g2");
+hold on;
+plot (t2, vsn, "g2");
+
+xlabel ("t[ms]");
+ylabel ("v6(t), vo(t) [V],");
+print (h2, "meh.eps", "-depsc");
 
 
