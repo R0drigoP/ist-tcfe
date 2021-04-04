@@ -114,6 +114,7 @@ vf=abs(X4(5))*cos(w*t+arg(X4(5)));
 vt=vn+vf;
 vi=Vx+0*t2;
 
+
 vsp=cos(w*t-pi/2);
 vsn=Vs+0*t2;
 
@@ -129,5 +130,23 @@ plot (t2, vsn, "g2");
 xlabel ("t[ms]");
 ylabel ("v6(t), vo(t) [V],");
 print (h2, "meh.eps", "-depsc");
+
+
+%time axis: -1 to 6 with 1us steps
+t3=-1:1e-1:6;
+
+f=10.^(t3);
+V6f=(-Kb*X4(2) + (1/R5+Kb)*X4(4) + i*2*pi*f*C*X4(7))/(1/R5+i*2*pi*f*C)
+
+fase=arg(V6f);
+
+h3 = figure ();
+plot (t3, fase, "g5");
+
+
+xlabel ("f[Db]");
+ylabel ("fase [V],");
+print (h3, "fase.eps", "-depsc");
+
 
 
