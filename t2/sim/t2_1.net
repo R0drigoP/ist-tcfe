@@ -3,24 +3,7 @@
 *Guardar correntes
 .options savecurrents
 
-*Resistências
-R1 1 2 1.04005394176k;
-R2 2 3 2.07146823978k;
-R3 2 5 3.06015694112k; terminais fixos
-R4 GND 5 4.13750728298k;
-R5 5 6 3.13205467735k;
-R6 9 7 2.01065636997k; terminais fixos
-R7 7 8 1.00318758033k;
-
-*Fontes Independentes
-Vs 1 GND 5.14514577871V
-V0 GND 9 0V; terminais fixos
-
-*Fontes Dependentes
-Hd 5 8 V0 8.3495605781k;
-Gb 6 3 (2,5) 7.04881622155m;
-
-*Condesador funciona como circuito aberto para t<0
+.include ../mat/spice1.cir
 
 .control
 

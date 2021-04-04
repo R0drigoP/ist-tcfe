@@ -3,64 +3,37 @@
 *Guardar correntes
 .options savecurrents
 
-*Resistências
-R1 1 2 1.04005394176k;
-R2 2 3 2.07146823978k;
-R3 2 5 3.06015694112k; terminais fixos
-R4 GND 5 4.13750728298k;
-R5 5 6 3.13205467735k;
-R6 9 7 2.01065636997k; terminais fixos
-R7 7 8 1.00318758033k;
-
-*Fontes Independentes
-Vs 1 GND sin(0 1 1k)
-V0 GND 9 0V; terminais fixos
-
-*Fontes Dependentes
-Hd 5 8 V0 8.3495605781k;
-Gb 6 3 (2,5) 7.04881622155m;
-
-*Condensador
-C 6 8 1.03830911265u
-
-.ic V(6)=8.55467e+00 V(8)=0
+.include ../mat/spice45.cir
 
 .control
+
+set units = degrees
+
+*makes plots in color
+set hcopypscolor=0
+set color0=white
+set color1=black
+set color2=red
+set color3=blue
+set color4=violet
+set color5=rgb:3/8/0
+set color6=rgb:4/0/0
 
 *Simulação
 *op
 
 tran 0.01ms 20ms
-plot V(6) V(1)
+hardcopy V_6_1.ps V(6) V(1)
 
-*ac dec 10 0.1k 1MEG 
-*plot db(6/1)
 
-*echo "I_TAB"
-*print @gb[i]
-*print @r1[i]
-*print @r2[i]
-*print @r3[i]
-*print @r4[i]
-*print @r5[i]
-*print @r6[i]
-*print @r7[i]
-*print hd#branch
-*print vs#branch
-*echo "I_END"
+ac dec 10 0.1 1MEG
 
-*echo  "V_TAB"
-*print V(1)
-*print V(2)
-*print V(3)
-*print V(5)
-*print V(6)
-*print V(7)
-*print V(8)
-*print V(9)
-*echo  "V_END"
+hardcopy db.ps db(v(6)) db(v(1)) db(v(6)-v(8))
+echo db_FIG
+hardcopy ph.ps ph(v(6)) ph(v(1)) ph(v(6)-v(8))
+echo ph_FIG
 
 *quit
-.endc
 
+.endc
 .end
