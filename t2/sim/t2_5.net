@@ -1,0 +1,50 @@
+*Circuito t2 Natural Solution
+
+*Guardar correntes
+.options savecurrents
+
+*Resistências
+R1 1 2 1.04005394176k;
+R2 2 3 2.07146823978k;
+R3 2 5 3.06015694112k; terminais fixos
+R4 GND 5 4.13750728298k;
+R5 5 6 3.13205467735k;
+R6 9 7 2.01065636997k; terminais fixos
+R7 7 8 1.00318758033k;
+
+*Fontes Independentes
+Vs 1 GND DC 1 sin(0 1 1k)
+V0 GND 9 0V; terminais fixos
+
+*Fontes Dependentes
+Hd 5 8 V0 8.3495605781k;
+Gb 6 3 (2,5) 7.04881622155m;
+
+*Condensador
+C 6 8 1.03830911265u
+
+.ic V(6)=8.55467e+00 V(8)=0
+
+.control
+
+*makes plots in color
+set hcopypscolor=0
+set color0=white
+set color1=black
+set color2=red
+set color3=blue
+set color4=violet
+set color5=rgb:3/8/0
+set color6=rgb:4/0/0
+
+*Simulação
+*op
+
+ac dec 100 100 100MEG
+plot vdb(1)
+*hardcopy sim_db.ps db(v(6))
+
+*quit
+.endc
+
+.end

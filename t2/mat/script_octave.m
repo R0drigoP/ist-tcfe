@@ -1,4 +1,22 @@
 pkg load symbolic
+
+file = fopen('data.txt', 'r');
+v = fscanf(file, '%f');
+fclose(file)
+
+R1 = v(1)*1000
+R2 = v(2)*1000
+R3 = v(3)*1000
+R4 = v(4)*1000
+R5 = v(5)*1000
+R6 = v(6)*1000
+R7 = v(7)*1000
+Vs = v(8)
+C = v(9)/1e6
+Kb = v(10)/1000
+Kd = v(11)*1000
+
+#{
 R1=1.04005394176e3;
 R2=2.07146823978e3;
 R3=3.06015694112e3;
@@ -9,7 +27,8 @@ R7=1.00318758033e3;
 Vs=5.14514577871;
 C=1.03830911265e-6;
 Kb=7.04881622155e-3;
-Kd=8.3495605781e3;
+Kd=8.3495605781e3; 
+#}
 Ic=0.;
 
 
@@ -132,6 +151,7 @@ ylabel ("v6(t), vo(t) [V],");
 print (h2, "meh.eps", "-depsc");
 
 
+<<<<<<< HEAD
 %time axis: -1 to 6 with 1us steps
 t3=-1:1e-1:6;
 
@@ -147,6 +167,103 @@ plot (t3, fase, "g5");
 xlabel ("f[Db]");
 ylabel ("fase [V],");
 print (h3, "fase.eps", "-depsc");
+=======
+#=======================================================
+#=========== 1
+
+spice1 = fopen("spice1.cir", "w");
+
+#fprintf(spice1, ".OP\n");
+fprintf(spice1, "R1 1 2 %f\n", R1);
+fprintf(spice1, "R2 2 3 %f\n", R2);
+fprintf(spice1, "R3 2 5 %f\n", R3);
+fprintf(spice1, "R4 0 5 %f\n", R4);
+fprintf(spice1, "R5 5 6 %f\n", R5);
+fprintf(spice1, "R6 9 7 %f\n", R6);
+fprintf(spice1, "R7 7 8 %f\n", R7);
+
+fprintf(spice1, "Vs 1 0 %f\n", Vs);
+
+fprintf(spice1, "V0 0 9 0V\n");
+fprintf(spice1, "Hd 5 8 V0 %f\n", Kd);
+
+fprintf(spice1, "Gb 6 3 (2,5) %f\n", Kb);
+
+fclose(spice1);
+
+#=========== 2
+
+spice2 = fopen("spice2.cir", "w");
+
+fprintf(spice2, "R1 1 2 %f\n", R1);
+fprintf(spice2, "R2 2 3 %f\n", R2);
+fprintf(spice2, "R3 2 5 %f\n", R3);
+fprintf(spice2, "R4 0 5 %f\n", R4);
+fprintf(spice2, "R5 5 6 %f\n", R5);
+fprintf(spice2, "R6 9 7 %f\n", R6);
+fprintf(spice2, "R7 7 8 %f\n", R7);
+
+fprintf(spice2, "Vs 1 0 %f\n", Vs);
+fprintf(spice2, "V0 0 9 0V\n");
+fprintf(spice2, "Vx 6 8 %f\n", Vx);
+
+fprintf(spice2, "Hd 5 8 V0 %f\n", Kd);
+fprintf(spice2, "Gb 6 3 (2,5) %f\n", Kb);
+
+fclose(spice2);
+
+#=========== 3
+
+spice3 = fopen("spice3.cir", "w");
+
+fprintf(spice3, "R1 1 2 %f\n", R1);
+fprintf(spice3, "R2 2 3 %f\n", R2);
+fprintf(spice3, "R3 2 5 %f\n", R3);
+fprintf(spice3, "R4 0 5 %f\n", R4);
+fprintf(spice3, "R5 5 6 %f\n", R5);
+fprintf(spice3, "R6 9 7 %f\n", R6);
+fprintf(spice3, "R7 7 8 %f\n", R7);
+
+fprintf(spice3, "Vs 1 0 0V\n");
+fprintf(spice3, "V0 0 9 0V\n");
+
+fprintf(spice3, "Hd 5 8 V0 %f\n", Kd);
+fprintf(spice3, "Gb 6 3 (2,5) %f\n", Kb);
+
+fprintf(spice3, "C1 6 8 %f\n", C);
+
+#X(5) msm??
+fprintf(spice3, ".ic V(6)=%f V(8)=%f\n", X(4), X(5)); 
+
+fclose(spice3);
+
+#=========== 45
+
+spice45 = fopen("spice45.cir", "w");
+
+fprintf(spice45, "R1 1 2 %f\n", R1);
+fprintf(spice45, "R2 2 3 %f\n", R2);
+fprintf(spice45, "R3 2 5 %f\n", R3);
+fprintf(spice45, "R4 0 5 %f\n", R4);
+fprintf(spice45, "R5 5 6 %f\n", R5);
+fprintf(spice45, "R6 9 7 %f\n", R6);
+fprintf(spice45, "R7 7 8 %f\n", R7);
+
+fprintf(spice45, "Vs 1 0 0.0 ac 1.0 sin(0 1 1k)\n");
+%fprintf(spice45, "Vs 1 0 0.0 ac 1.0 sin(0 1.0 1.0)\n");
+fprintf(spice45, "V0 0 9 0V\n");
+
+fprintf(spice45, "Hd 5 8 V0 %f\n", Kd);
+fprintf(spice45, "Gb 6 3 (2,5) %f\n", Kb);
+
+fprintf(spice45, "C1 6 8 %f\n", C);
+
+#X(5) msm??
+fprintf(spice45, ".ic V(6)=%f V(8)=%f\n", X(4), X(5)); 
+
+fclose(spice45);
+
+>>>>>>> e765419a1e0c44d598188cceb02b7cf89121a704
 
 
 
