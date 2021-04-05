@@ -151,7 +151,6 @@ ylabel ("v6(t), vo(t) [V],");
 print (h2, "meh.eps", "-depsc");
 
 
-<<<<<<< HEAD
 %time axis: -1 to 6 with 1us steps
 t3=-1:1e-1:6;
 
@@ -167,7 +166,7 @@ plot (t3, fase, "g5");
 xlabel ("f[Db]");
 ylabel ("fase [V],");
 print (h3, "fase.eps", "-depsc");
-=======
+
 #=======================================================
 #=========== 1
 
@@ -262,8 +261,6 @@ fprintf(spice45, "C1 6 8 %f\n", C);
 fprintf(spice45, ".ic V(6)=%f V(8)=%f\n", X(4), X(5)); 
 
 fclose(spice45);
-
->>>>>>> e765419a1e0c44d598188cceb02b7cf89121a704
 
 
 
