@@ -150,25 +150,22 @@ xlabel ("t[ms]");
 ylabel ("v6(t), vo(t) [V],");
 print (h2, "meh.eps", "-depsc");
 
-
 %time axis: -1 to 6 with 1us steps
-t3=-1:1e-1:6;
+t3=[-1:1e-1:6];
 
 f=10.^(t3);
-V6f=(-Kb*X4(2) + (1/R5+Kb)*X4(4) + i*2*pi*f*C*X4(7))/(1/R5+i*2*pi*f*C)
+V6f=arg((-Kb*X4(2) + (1/R5+Kb)*X4(4) + i*2*pi*f*C*X4(7)))-arg((1/R5+i*2*pi*f*C))
+#V6f=(-Kb*X4(2) + (1/R5+Kb)*X4(4) + i*2*pi*f*C*X4(7))/(1/R5+i*2*pi*f*C)
 
-fase=arg(V6f);
+#fase=(V6f1)-(V6f1);
 
 h3 = figure ();
-plot (t3, fase, "g5");
+plot (t3, V6f, "g5");
 
 
 xlabel ("f[Db]");
 ylabel ("fase [V],");
 print (h3, "fase.eps", "-depsc");
-
-#=======================================================
-#=========== 1
 
 spice1 = fopen("spice1.cir", "w");
 
@@ -190,7 +187,6 @@ fprintf(spice1, "Gb 6 3 (2,5) %f\n", Kb);
 
 fclose(spice1);
 
-#=========== 2
 
 spice2 = fopen("spice2.cir", "w");
 
@@ -211,7 +207,7 @@ fprintf(spice2, "Gb 6 3 (2,5) %f\n", Kb);
 
 fclose(spice2);
 
-#=========== 3
+
 
 spice3 = fopen("spice3.cir", "w");
 
@@ -235,8 +231,6 @@ fprintf(spice3, "C1 6 8 %f\n", C);
 fprintf(spice3, ".ic V(6)=%f V(8)=%f\n", X(4), X(5)); 
 
 fclose(spice3);
-
-#=========== 45
 
 spice45 = fopen("spice45.cir", "w");
 
