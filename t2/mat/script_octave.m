@@ -85,7 +85,6 @@ B4=[-i;Z;Z;Z;Z;Z;Z];
 
 X4=A4\B4
 
-
 printf("op1_TAB\n")
 printf("$V_1$ = %.15e\n", X2(1))
 printf("$V_2$ = %.15e\n", X2(2))

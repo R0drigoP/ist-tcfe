@@ -11,6 +11,6 @@ data.txt: t2_datagen.py
 	python $< > $@
 
 clean:
-	@rm -f data.txt octave.log octave-workspace *.eps *.tex *~
+	@rm -f data.txt octave.log octave-workspace *.eps *.tex *.cir *~
 
 .PHONY: clean
