@@ -81,7 +81,7 @@ Z, Z, Z, Z, Z, -(1/R6+1/R7), 1/R7;
 Z, 1/R3, Z, -(1/R4+1/R5+1/R3), 1/R5+i*w*C, 1/R7, -1/R7-i*w*C
 ];
 
-B4=[-i;Z;Z;Z;Z;Z;Z];
+B4=[1;Z;Z;Z;Z;Z;Z];
 
 X4=A4\B4
 
@@ -128,7 +128,7 @@ print (hf, "forced.eps", "-depsc");
 t2=-5e-3:1e-6:0;
 
 vn=Vx*exp(-t/(Req*C));
-vf=abs(X4(5))*cos(w*t+arg(X4(5)));
+vf=abs(X4(5))*sin(w*t+arg(X4(5)));
 vt=vn+vf;
 vi=Vx+0*t2;
 
@@ -153,18 +153,48 @@ print (h2, "meh.eps", "-depsc");
 t3=[-1:1e-1:6];
 
 f=10.^(t3);
-V6f=arg((-Kb*X4(2) + (1/R5+Kb)*X4(4) + i*2*pi*f*C*X4(7)))-arg((1/R5+i*2*pi*f*C))
+V6f=arg((-Kb*X4(2) + (1/R5+Kb)*X4(4) + i*2*pi*f*C*X4(7)))-arg((1/R5+i*2*pi*f*C));
 #V6f=(-Kb*X4(2) + (1/R5+Kb)*X4(4) + i*2*pi*f*C*X4(7))/(1/R5+i*2*pi*f*C)
+
+faseVs=0*t3;
+
+VV6=abs(-Kb*X4(2) + (1/R5+Kb)*X4(4) + i*2*pi*f*C*X4(7))/abs(1/R5+i*2*pi*f*C)*exp(i*arg((-Kb*X4(2) + (1/R5+Kb)*X4(4) + i*2*pi*f*C*X4(7)))-i*arg((1/R5+i*2*pi*f*C)))
+faseVc=arg(VV6-X4(7))
 
 #fase=(V6f1)-(V6f1);
 
 h3 = figure ();
 plot (t3, V6f, "g5");
-
+hold on;
+plot (t3, faseVs, "g3");
+hold on;
+plot (t3, faseVc, "g4");
 
 xlabel ("f[Db]");
 ylabel ("fase [V],");
 print (h3, "fase.eps", "-depsc");
+
+
+TV6=20*log10(abs(-Kb*X4(2) + (1/R5+Kb)*X4(4) + i*2*pi*f*C*X4(7)))-20*log10(abs(1/R5+i*2*pi*f*C))
+
+TVs=20*log10(1+0*t3)
+
+TVc=20*log10(abs(VV6-X4(7)))
+
+h4 = figure ();
+plot (t3, TV6, "g5");
+hold on;
+plot (t3, TVs, "g3");
+hold on;
+plot (t3, TVc, "g4");
+
+xlabel ("f[Db]");
+ylabel ("tensão [V],");
+print (h4, "burp.eps", "-depsc");
+
+
+
+
 
 spice1 = fopen("spice1.cir", "w");
 
