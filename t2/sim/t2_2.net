@@ -10,8 +10,7 @@
 *Simulação
 op
 
-echo "OP_TAB"
-print @gb[i]
+echo "OP1_TAB"
 print @r1[i]
 print @r2[i]
 print @r3[i]
@@ -19,8 +18,6 @@ print @r4[i]
 print @r5[i]
 print @r6[i]
 print @r7[i]
-print hd#branch
-print vs#branch
 print vx#branch
 print V(1)
 print V(2)
@@ -29,7 +26,7 @@ print V(5)
 print V(6)
 print V(7)
 print V(8)
-echo  "OP_END"
+echo  "OP1_END"
 
 quit
 .endc

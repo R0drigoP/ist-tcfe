@@ -23,8 +23,8 @@ set color6=rgb:4/0/0
 *op
 
 tran 0.01ms 20ms
-hardcopy V_6_1.ps V(6) V(1)
-
+hardcopy vt.ps V(6) V(1)
+echo vt_FIG
 
 ac dec 10 0.1 1MEG
 

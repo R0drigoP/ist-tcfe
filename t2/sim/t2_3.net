@@ -21,7 +21,8 @@ set color6=rgb:4/0/0
 *op
 
 tran 1e-4 20e-3
-hardcopy nat_sol.ps v(6)
+hardcopy vn.ps v(6)
+echo vn_FIG
 
 quit
 .endc

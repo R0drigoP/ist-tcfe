@@ -20,7 +20,7 @@ Table \ref{tab:sim1} shows the node voltages obtained using the simulated operat
   \begin{tabular}{|l|r|}
     \hline    
     {\bf Node number} & {\bf Voltage (V)} \\ \hline
-    \input{../sim/V_tab}
+    \input{../sim/OP_tab}
   \end{tabular}
   \caption{Node voltage obtained by the simulation analysis.}
   \label{tab:sim_op_V}
@@ -28,17 +28,6 @@ Table \ref{tab:sim1} shows the node voltages obtained using the simulated operat
 
 Compared to the theoretical analysis results, we notice that both are similar, having small numeric differences between them ($\sim$ 0.2\%). The most likely cause of this is due to the fact that \textit{Octave} and \textit{Ngspice} have different numerical precision.
 
-Table \ref{tab:mesh_sim} shows the current flowing in each component using the simulated operating point results for the circuit under analysis
-\begin{table}[H]
-  \centering
-  \begin{tabular}{|l|r|}
-    \hline    
-    {\bf Component} & {\bf Current (A)} \\ \hline
-    \input{../sim/I_tab}
-  \end{tabular}
-  \caption{Simulated Current flowing through each component.}
-  \label{tab:sim_op_I}
-\end{table}
 
 Compared to the theoretical analysis results, we notice that, like in subsection \ref{subsec:node_sim}, both are similar, having differences $\sim$ $1\times10^{-4}$\%. We think the causes are the same that we described earlier.
 
@@ -48,7 +37,17 @@ Compared to the theoretical analysis results, we notice that, like in subsection
 Before we begin transient analysis, we need to find the intinial conditions of the original circuit at the capacitor terminals, $V_6$ and $V_8$.
 \par
 The results for the Operating Point Analysis are represented in Table \ref{tab:sim2}.
-**tabelas**
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline
+    {\bf Node number} & {\bf Voltage (V)} \\ \hline
+    \input{../sim/OP1_tab}
+  \end{tabular}
+  \caption{Node voltage obtained by the simulation analysis.}
+  \label{tab:sim_op_V}
+\end{table}
 
 \subsection{Transient Analysis - Natural Solution}
 \label{subsec:trans_NS}
@@ -56,7 +55,7 @@ The results for the Operating Point Analysis are represented in Table \ref{tab:s
 We begin by  analysing the original circuit in the interval $t \in [0, 20]ms$, with no forced frequency:
 
 \begin{figure}[H] \centering
-\includegraphics[width=0.7\linewidth]{sim_NS.pdf}
+\includegraphics[width=0.7\linewidth]{burro.pdf}
 \caption{Simulated circuit.}
 \label{fig:sim_NS}
 \end{figure}
@@ -64,7 +63,7 @@ We begin by  analysing the original circuit in the interval $t \in [0, 20]ms$, w
 For this analysis, we used the boundary conditions for $V_6$ and $V_8$ obtained in the previous section, with the AC Independent Voltage Source $V_s$ following a sinusoidal signal, displayed in Figure \ref{fig:sim345}. The result of the Transient Analysis is shown in Figure \ref{fig:sim-graph3}.
 
 \begin{figure}[H] \centering
-\includegraphics[width=0.4\linewidth]{../sim/ns.pdf}
+\includegraphics[width=0.4\linewidth]{../sim/vn.pdf}
 \caption{Voltage of $V_6$ (V) vs. Time ($\in [0, 20]ms$) - Transient Analysis of the Original Circuit with No Forced Frequency}
 \label{fig:sim-graph3}
 \end{figure}

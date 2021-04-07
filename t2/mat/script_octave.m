@@ -49,6 +49,13 @@ B2=[Vs; Z; Z; Z; Ic; Z; -Ic];
 
 X2=A2\B2;
 
+I1=(X2(1)-X2(2))/R1;
+I2=(X2(2)-X2(3))/R2;
+I3=(X2(2)-X2(4))/R3;
+I4=(-X2(4))/R4;
+I5=(X2(4)-X2(5))/R5;
+I6=(-X2(6))/R6;
+
 
 
 Vx=X2(5)-X2(7);
@@ -85,26 +92,7 @@ B4=[1;Z;Z;Z;Z;Z;Z];
 
 X4=A4\B4
 
-printf("op1_TAB\n")
-printf("$V_1$ = %.15e\n", X2(1))
-printf("$V_2$ = %.15e\n", X2(2))
-printf("$V_3$ = %.15e\n", X2(3))
-printf("$V_5$ = %.15e\n", X2(4))
-printf("$V_6$ = %.15e\n", X2(5))
-printf("$V_7$ = %.15e\n", X2(6))
-printf("$V_8$ = %.15e\n", X2(7))
-printf("op1_END\n")
 
-printf("op_TAB\n")
-printf("$V_x$ = %.15e\n", Vx)
-printf("$V_2$ = %.15e\n", X(1))
-printf("$V_3$ = %.15e\n", X(2))
-printf("$V_5$ = %.15e\n", X(3))
-printf("$V_6$ = %.15e\n", X(4))
-printf("$V_8$ = %.15e\n", X(5))
-printf("$I_x$ = %.15e\n", Ix)
-printf("$R_eq$ = %.15e\n", Req)
-printf("op_END\n")
 
 
 %time axis: 0 to 20ms with 1us steps
@@ -277,6 +265,39 @@ ylabel ("Magnitude [dB],");
 print (h4, "burp.eps", "-depsc");
 
 
+printf("op2_TAB\n")
+printf("$V_1$ = %.15e + i%.15e\n", real(X4(1)), imag(X4(1)))
+printf("$V_2$ = %.15e + i%.15e\n", real(X4(2)), imag(X4(2)))
+printf("$V_3$ = %.15e + i%.15e\n", real(X4(3)), imag(X4(3)))
+printf("$V_5$ = %.15e + i%.15e\n", real(X4(4)), imag(X4(4)))
+printf("$V_6$ = %.15e + i%.15e\n", real(X4(5)), imag(X4(5)))
+printf("$V_7$ = %.15e + i%.15e\n", real(X4(6)), imag(X4(6)))
+printf("$V_8$ = %.15e + i%.15e\n", real(X4(7)), imag(X4(7)))
+printf("op2_END\n")
+
+printf("op1_TAB\n")
+printf("$V_1$ = %.15e\n", X2(1))
+printf("$V_2$ = %.15e\n", X2(2))
+printf("$V_3$ = %.15e\n", X2(3))
+printf("$V_5$ = %.15e\n", X2(4))
+printf("$V_6$ = %.15e\n", X2(5))
+printf("$V_7$ = %.15e\n", X2(6))
+printf("$V_8$ = %.15e\n", X2(7))
+printf("$R1[i]$ = %.15e\n", I1)
+printf("$R2[i]$ = %.15e\n", I2)
+printf("$R3[i]$ = %.15e\n", I3)
+printf("$R4[i]$ = %.15e\n", I4)
+printf("$R5[i]$ = %.15e\n", I5)
+printf("$Id$ = %.15e\n", I6)
+printf("op1_END\n")
+
+printf("op_TAB\n")
+printf("$V_x$ = %.15e V\n", Vx)
+printf("$V_6$ = %.15e V\n", X(4))
+printf("$V_8$ = %.15e V\n", X(5))
+printf("$I_x$ = %.15e A\n", Ix)
+printf("$R_eq$ = %.15e $\\Omega$\n", Req)
+printf("op_END\n")
 
 
 spice1 = fopen("spice1.cir", "w");
