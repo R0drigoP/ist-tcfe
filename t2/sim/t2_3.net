@@ -23,7 +23,7 @@ set color6=rgb:4/0/0
 tran 1e-4 20e-3
 hardcopy nat_sol.ps v(6)
 
-*quit
+quit
 .endc
 
 .end

@@ -1,18 +1,20 @@
 \section{Simulation Analysis}
 \label{sec:simulation}
 
-For the circuit simulation we used the \textit{Ngspice} software. It is important to point that, for this analysis we needed to add an independent voltage source with value 0V to compute the current $I_c$, needed on the dependent voltage source, $V_c$. Figure \ref{fig:cir_sim} represents the simulated circuit
+For the circuit simulation we used the \textit{Ngspice} software. It is important to point that, for this analysis we needed to add an independent voltage source with value 0V to compute the current $I_d$, needed on the dependent voltage source, $V_0$.
+
+\subsection{Operating Point Analysis for $t<0$}
+\label{subsec:op_point}
+
+In this period of time, $v_s (t)= V_s$ V and the circuit is time static, which means that the Capacitor C behaves as an open circuit. This is shown in Figure \ref{fig:sim1}.
 
 \begin{figure}[H] \centering
-\includegraphics[width=0.7\linewidth]{cir_sim.pdf}
+\includegraphics[width=0.7\linewidth]{sim_op.pdf}
 \caption{Simulated circuit.}
-\label{fig:cir_sim}
+\label{fig:sim_op}
 \end{figure}
 
-\subsection{Node Analysis}
-\label{subsec:node_sim}
-
-Table \ref{tab:node_sim} shows the node voltages obtained using the simulated operating point results for the circuit under analysis
+Table \ref{tab:sim1} shows the node voltages obtained using the simulated operating point results for the circuit under analysis, for $t<0$.
 \begin{table}[H]
   \centering
   \begin{tabular}{|l|r|}
@@ -21,11 +23,10 @@ Table \ref{tab:node_sim} shows the node voltages obtained using the simulated op
     \input{../sim/V_tab}
   \end{tabular}
   \caption{Node voltage obtained by the simulation analysis.}
-  \label{tab:node_sim}
+  \label{tab:sim_op_V}
 \end{table}
-Compared to the theoretical analysis results, we notice that both are similar, having small numeric differences between them ($\sim$ 0.2\%). The most likely cause of this is due to the fact that \textit{Octave} and \textit{Ngspice} have different numerical precision.
 
-\subsection{Mesh Analysis}
+Compared to the theoretical analysis results, we notice that both are similar, having small numeric differences between them ($\sim$ 0.2\%). The most likely cause of this is due to the fact that \textit{Octave} and \textit{Ngspice} have different numerical precision.
 
 Table \ref{tab:mesh_sim} shows the current flowing in each component using the simulated operating point results for the circuit under analysis
 \begin{table}[H]
@@ -36,9 +37,62 @@ Table \ref{tab:mesh_sim} shows the current flowing in each component using the s
     \input{../sim/I_tab}
   \end{tabular}
   \caption{Simulated Current flowing through each component.}
-  \label{tab:mesh_sim}
+  \label{tab:sim_op_I}
 \end{table}
 
 Compared to the theoretical analysis results, we notice that, like in subsection \ref{subsec:node_sim}, both are similar, having differences $\sim$ $1\times10^{-4}$\%. We think the causes are the same that we described earlier.
+
+\subsection{Finding the initial conditions of the circuit}
+\label{subsec:init_conds}
+
+Before we begin transient analysis, we need to find the intinial conditions of the original circuit at the capacitor terminals, $V_6$ and $V_8$.
+\par
+The results for the Operating Point Analysis are represented in Table \ref{tab:sim2}.
+**tabelas**
+
+\subsection{Transient Analysis - Natural Solution}
+\label{subsec:trans_NS}
+
+We begin by  analysing the original circuit in the interval $t \in [0, 20]ms$, with no forced frequency:
+
+\begin{figure}[H] \centering
+\includegraphics[width=0.7\linewidth]{sim_NS.pdf}
+\caption{Simulated circuit.}
+\label{fig:sim_NS}
+\end{figure}
+
+For this analysis, we used the boundary conditions for $V_6$ and $V_8$ obtained in the previous section, with the AC Independent Voltage Source $V_s$ following a sinusoidal signal, displayed in Figure \ref{fig:sim345}. The result of the Transient Analysis is shown in Figure \ref{fig:sim-graph3}.
+
+\begin{figure}[H] \centering
+\includegraphics[width=0.4\linewidth]{../sim/trans3.pdf}
+\caption{Voltage of $V_6$ (V) vs. Time ($\in [0, 20]ms$) - Transient Analysis of the Original Circuit with No Forced Frequency}
+\label{fig:sim-graph3}
+\end{figure}
+
+As expected, the voltage of $V_6$ decays exponentially, as the Capacitor stores more and more energy as time goes by.
+
+\subsection{Transient Analysis - Forced Frequency of 1kHz}
+\label{subsec:trans_FS}
+
+In this section, we repeat the exact same steps taken in the previous one, except we introduce a forced frequency signal of 1kHz on $V_s$. In Figure \ref{fig:sim-graph4}, we can observe the sum of both the natural and forced response of the circuit in node 6.
+
+
+\begin{figure}[h] \centering
+\includegraphics[width=0.4\linewidth]{../sim/trans4.pdf}
+\caption{Voltage of $V_6$ and of the stimulus (V) vs. Time ($\in [0, 20]ms$) - Transient Analysis of the Original Circuit with a Forced Frequency of 1kHz}
+\label{fig:sim-graph4}
+\end{figure}
+
+It is clear that the shape of $V_6(t)$ is the same as before, only now modulated by the stimulus, represented in Figure \ref{fig:sim-graph4} in blue, with the label v(1), because the voltage in node 1 is made up of a difference in potencial in the GROUND (whose volatge is 0) and by the voltage created by $V_s$.
+
+\subsection{Frequency Analysis}
+\label{subsec:sim_freq}
+
+
+
+
+
+
+
 
 
