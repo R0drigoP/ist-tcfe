@@ -150,6 +150,7 @@ ylabel ("v6(t), vo(t) [V],");
 print (h2, "meh.eps", "-depsc");
 
 %time axis: -1 to 6 with 1us steps
+#{
 t3=[-1:1e-1:6];
 
 f=10.^(t3);
@@ -191,7 +192,89 @@ xlabel ("f[Db]");
 ylabel ("tensão [V],");
 axis ([-1,6,-90,10]);
 print (h4, "burp.eps", "-depsc");
+#}
 
+t3=ones(71);
+
+V6f = ones(71);
+V6m = ones(71);
+
+Vcf = ones(71);
+Vcm = ones(71);
+
+
+#f1=10.^(t3);
+
+for i = 0:70
+
+f = 10^(i*1e-1 - 1);
+
+t3(i+1) = i*1e-1 - 1;
+
+w1= f*2*pi;
+
+Afreq=[
+U, Z, Z, Z, Z, Z, Z;
+1/R1, -(1/R1+1/R2+1/R3), 1/R2, 1/R3, Z, Z, Z; 
+Z, 1/R2+Kb, -1/R2, -Kb, Z, Z, Z;
+Z, Z, Z, U, Z, Kd/R6, -U;
+Z, -Kb, Z, 1/R5+Kb, -1/R5-j*w1*C, Z, j*w1*C;
+Z, Z, Z, Z, Z, -(1/R6+1/R7), 1/R7;
+Z, 1/R3, Z, -(1/R4+1/R5+1/R3), 1/R5+j*w1*C, 1/R7, -1/R7-j*w1*C
+];
+
+Bfreq=[1;Z;Z;Z;Z;Z;Z];
+
+Xfreq=Afreq\Bfreq;
+
+V6f(i+1) = arg(Xfreq(5));
+V6m(i+1) = abs(Xfreq(5));
+
+Vcf(i+1) = arg(Xfreq(5) - Xfreq(7));
+Vcm(i+1) = abs(Xfreq(5) - Xfreq(7));
+
+endfor
+
+#V6f=arg((-Kb*X4(2) + (1/R5+Kb)*X4(4) + i*2*pi*f*C*X4(7)))-arg((1/R5+i*2*pi*f*C));
+#V6f=(-Kb*X4(2) + (1/R5+Kb)*X4(4) + i*2*pi*f*C*X4(7))/(1/R5+i*2*pi*f*C)
+
+faseVs=0*t3;
+
+#VV6=abs(-Kb*X4(2) + (1/R5+Kb)*X4(4) + i*2*pi*f*C*X4(7))/abs(1/R5+i*2*pi*f*C)*exp(i*arg((-Kb*X4(2) + (1/R5+Kb)*X4(4) + i*2*pi*f*C*X4(7)))-i*arg((1/R5+i*2*pi*f*C)))
+#faseVc=arg(VV6-X4(7))
+
+#fase=(V6f1)-(V6f1);
+
+h3 = figure ();
+plot (t3, V6f*180/pi, "g5");
+hold on;
+plot (t3, faseVs*180/pi, "g3");
+hold on;
+plot (t3, Vcf*180/pi, "g4");
+
+xlabel ("f[ln(Hz)]");
+ylabel ("fase [º],");
+print (h3, "fase.eps", "-depsc");
+
+
+#TV6=20*log10(abs(-Kb*X4(2) + (1/R5+Kb)*X4(4) + i*2*pi*f*C*X4(7)))-20*log10(abs(1/R5+i*2*pi*f*C))
+
+#TV8 = 20*log10(abs(X4(7)));
+
+TVs=20*log10(1+0*t3);
+
+#TVc=20*log10(abs(VV6-X4(7)))
+
+h4 = figure ();
+plot (t3, 20*log10(V6m), "g5");
+hold on;
+plot (t3, TVs, "g3");
+hold on;
+plot (t3, 20*log10(Vcm), "g4");
+
+xlabel ("f[ln(Hz)]");
+ylabel ("Magnitude [dB],");
+print (h4, "burp.eps", "-depsc");
 
 
 
