@@ -2,10 +2,7 @@
 \label{sec:introduction}
 
 % state the learning objective
-The objective of this laboratory assignment is to study a circuit containing resistors that follow Ohm's law, independent and linearly dependent voltage and current sources. With this analysis, we want to determine the potential at each of the eight nodes and the current flowing through all of the ten branches.
-With this purpose, we'll use both node method, that is, the usage of KVL theorem at all the nodes, considering the voltage of the nodes, and mesh method, that is, applying KCL theorem in all of the four meshes, each one with a current defined by us.
-\par
-The circuit explained, as well as all numbered nodes and mesh currents, can be seen in Figure \ref{fig:cir_intro}
+The objective of this laboratory assignment is to study a circuit containing resistors, linearly dependent voltage and current sources, a sinusoidal voltage source and a capacitor. The explained explained can be seen in Figure \ref{fig:cir_intro}
 
 \begin{figure}[H] \centering
 \includegraphics[width=0.7\linewidth]{cir_intro.pdf}
@@ -13,9 +10,8 @@ The circuit explained, as well as all numbered nodes and mesh currents, can be s
 \label{fig:cir_intro}
 \end{figure}
 
-
 In Section \ref{sec:analysis}, a theoretical analysis of the circuit is
-presented. In Section \ref{sec:simulation}, the circuit is analysed by
-simulation, and the results are compared to the theoretical results obtained in
-Section \ref{sec:analysis}. The conclusions of this study are outlined in
-Section \ref{sec:conclusion}.
+presented. More precisely, we study the circuit for $t<0$, find the equivalent resistor as seen from the capacitor terminals, the natural and forced solutions for $t>0$, as well as frequency response analysis.
+
+In Section \ref{sec:simulation}, the circuit is analysed by
+simulation, using \textit{Ngspice}, and we study the same as in Section \ref{sec:analysis}. The results are also compared to the theoretical ones. The conclusions of this study are outlined in Section \ref{sec:conclusion}.

@@ -1,4 +1,4 @@
-*Circuito t2 Natural Solution
+*Circuito t2
 
 *Guardar correntes
 .options savecurrents
@@ -33,7 +33,7 @@ echo db_FIG
 hardcopy ph.ps ph(v(6)) ph(v(1)) ph(v(6)-v(8))
 echo ph_FIG
 
-*quit
+quit
 
 .endc
 .end
