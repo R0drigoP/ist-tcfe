@@ -105,9 +105,10 @@ v6=Vx*exp(-t/(Req*C));
 hf = figure ();
 plot (t, v6, "g");
 hold on;
-
+legend("V6n","location","northeastoutside");
 xlabel ("t[ms]");
 ylabel ("v6(t), vo(t) [V]");
+hold off
 print (hf, "natural.eps", "-depsc");
 
 
@@ -128,14 +129,17 @@ h2 = figure ();
 plot (t, vt, "g3");
 hold on;
 plot (t2, vi, "g3");
-hold on;
+#hold on;
 plot (t, vsp, "g2");
-hold on;
+#hold on;
 plot (t2, vsn, "g2");
 
+legend("V6","V6","Vs","Vs","location","northeastoutside");
 xlabel ("t[ms]");
 ylabel ("v6(t), vo(t) [V],");
+hold off
 print (h2, "total.eps", "-depsc");
+
 
 %time axis: -1 to 6 with 1us steps
 
@@ -188,11 +192,14 @@ h3 = figure ();
 plot (t3, V6f*180/pi, "g5");
 hold on;
 plot (t3, faseVs*180/pi, "g3");
-hold on;
+#hold on;
 plot (t3, Vcf*180/pi, "g4");
+
+
 
 xlabel ("f[ln(Hz)]");
 ylabel ("fase [º],");
+hold off
 print (h3, "phase.eps", "-depsc");
 
 
@@ -208,11 +215,15 @@ h4 = figure ();
 plot (t3, 20*log10(V6m), "g5");
 hold on;
 plot (t3, TVs, "g3");
-hold on;
+#hold on;
 plot (t3, 20*log10(Vcm), "g4");
+
+h={'V6','Vs','VC'}
+legend("V6","Vs","VC", "location","northeastoutside");
 
 xlabel ("f[ln(Hz)]");
 ylabel ("Magnitude [dB],");
+hold off
 print (h4, "magnitude.eps", "-depsc");
 
 
