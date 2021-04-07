@@ -282,7 +282,7 @@ fprintf(spice2, "R5 5 6 %f\n", R5);
 fprintf(spice2, "R6 9 7 %f\n", R6);
 fprintf(spice2, "R7 7 8 %f\n", R7);
 
-fprintf(spice2, "Vs 1 0 %f\n", Vs);
+fprintf(spice2, "Vs 1 0 0V\n");
 fprintf(spice2, "V0 0 9 0V\n");
 fprintf(spice2, "Vx 6 8 %f\n", Vx);
 

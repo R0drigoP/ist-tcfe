@@ -1,7 +1,7 @@
 \section{Simulation Analysis}
 \label{sec:simulation}
 
-For the circuit simulation we used the \textit{Ngspice} software. It is important to point that, for this analysis we needed to add an independent voltage source with value 0V to compute the current $I_d$, needed on the dependent voltage source, $V_0$.
+For the circuit simulation we used the \textit{Ngspice} software. It is important to point that, for this analysis we needed to add an independent voltage source with value 0V to compute the current $I_d$, needed on the dependent voltage source.
 
 \subsection{Operating Point Analysis for $t<0$}
 \label{subsec:op_point}
@@ -17,20 +17,17 @@ Table \ref{tab:sim1} shows the node voltages obtained using the simulated operat
     \input{../sim/OP_tab}
   \end{tabular}
   \caption{Node voltage obtained by the simulation analysis.}
-  \label{tab:sim_op_V}
+  \label{tab:sim1}
 \end{table}
 
-Compared to the theoretical analysis results, we notice that both are similar, having small numeric differences between them ($\sim$ 0.2\%). The most likely cause of this is due to the fact that \textit{Octave} and \textit{Ngspice} have different numerical precision.
-
-
-Compared to the theoretical analysis results, we notice that, like in subsection \ref{subsec:node_sim}, both are similar, having differences $\sim$ $1\times10^{-4}$\%. We think the causes are the same that we described earlier.
+Compared to the theoretical analysis results, we notice that both are similar, having small numeric differences between them. The most likely cause of this is due to the fact that \textit{Octave} and \textit{Ngspice} have different numerical precision.
 
 \newpage
 
 \subsection{Finding the initial conditions of the circuit}
 \label{subsec:init_conds}
 
-Before we begin transient analysis, we need to find the intinial conditions of the original circuit at the capacitor terminals, $V_6$ and $V_8$.
+Before we begin transient analysis, we need to find the intinial conditions of the original circuit at the capacitor terminals, $V_6$ and $V_8$. For that, we follow the same steps as in Subsection \ref{subsec:Req}.
 \par
 The results for the Operating Point Analysis are represented in Table \ref{tab:sim2}.
 
@@ -42,7 +39,7 @@ The results for the Operating Point Analysis are represented in Table \ref{tab:s
     \input{../sim/OP1_tab}
   \end{tabular}
   \caption{Node voltage obtained by the simulation analysis.}
-  \label{tab:sim_op_V}
+  \label{tab:sim2}
 \end{table}
 
 \newpage
@@ -51,7 +48,7 @@ The results for the Operating Point Analysis are represented in Table \ref{tab:s
 \label{subsec:trans_NS}
 
 We begin by  analysing the original circuit in the interval $t \in [0, 20]ms$, with no forced frequency, that means, we make $V_s$ = 0V.
-For this analysis, we used the boundary conditions for $V_6$ and $V_8$ obtained in the previous section, with the AC Independent Voltage Source $V_s$ following a sinusoidal signal, displayed in Figure \ref{fig:sim345}. The result of the Transient Analysis is shown in Figure \ref{fig:sim-graph3}.
+For this analysis, we used the boundary conditions for $V_6$ and $V_8$ obtained in the previous section, with the AC Independent Voltage Source $V_s$ following a sinusoidal signal. The result of the Transient Analysis is shown in Figure \ref{fig:sim-graph3}.
 
 \begin{figure}[H] \centering
 \includegraphics[width=0.7\linewidth]{../sim/vn.pdf}
@@ -59,7 +56,7 @@ For this analysis, we used the boundary conditions for $V_6$ and $V_8$ obtained 
 \label{fig:sim-graph3}
 \end{figure}
 
-As expected, the voltage of $V_6$ decays exponentially, as the Capacitor stores more and more energy as time goes by.
+As expected, the voltage of $V_6$ decays exponentially, as the Capacitor stores more and more energy as time goes by, which was also seen in Section \ref{sec:analysis}.
 
 \subsection{Transient Analysis - Forced Frequency of 1kHz}
 \label{subsec:trans_FS}
@@ -73,7 +70,7 @@ In this section, we repeat the exact same steps taken in the previous one, excep
 \label{fig:sim-graph4}
 \end{figure}
 
-It is clear that the shape of $V_6(t)$ is the same as before, only now modulated by the stimulus, represented in Figure \ref{fig:sim-graph4} in blue, with the label v(1), because the voltage in node 1 is made up of a difference in potencial in the GROUND (whose volatge is 0) and by the voltage created by $V_s$.
+It is clear that the shape of $V_6(t)$ is the same as before, only now modulated by the stimulus, represented in Figure \ref{fig:sim-graph4} in blue, with the label v(1), because the voltage in node 1 is made up of a difference in potencial in the GROUND (that has voltage 0) and by the voltage created by $V_s$. Once again, this is the same as obtained in the theorethical analysis.
 
 \subsection{Frequency Analysis}
 \label{subsec:sim_freq}
@@ -97,7 +94,9 @@ Lastly, we take a look at the phase of $V_6$, $V_s$ and $V_c$, respectively ph(v
 \end{figure}
 
 
-As we can observe, all of the phases are 0 at $f=0.1Hz$ and then vary according to the frequency. 
+As we can observe, all of the phases are 0 at $f=0.1Hz$ and then vary according to the frequency.
+\par
+Both of this results were also obtained in Section \ref{sec:analysis}.
 
 
 
