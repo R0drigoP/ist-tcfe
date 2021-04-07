@@ -6,20 +6,14 @@ For the circuit simulation we used the \textit{Ngspice} software. It is importan
 \subsection{Operating Point Analysis for $t<0$}
 \label{subsec:op_point}
 
-In this period of time, $v_s (t)= V_s$ V and the circuit is time static, which means that the Capacitor C behaves as an open circuit. This is shown in Figure \ref{fig:sim1}.
-
-\begin{figure}[H] \centering
-\includegraphics[width=0.7\linewidth]{sim_op.pdf}
-\caption{Simulated circuit.}
-\label{fig:sim_op}
-\end{figure}
+In this period of time, $v_s (t)= V_s$ V and the circuit is time static, which means that the Capacitor C behaves as an open circuit. 
 
 Table \ref{tab:sim1} shows the node voltages obtained using the simulated operating point results for the circuit under analysis, for $t<0$.
 \begin{table}[H]
   \centering
   \begin{tabular}{|l|r|}
     \hline    
-    {\bf Node number} & {\bf Voltage (V)} \\ \hline
+    {\bf Variable} & {\bf Value (V or A)} \\ \hline
     \input{../sim/OP_tab}
   \end{tabular}
   \caption{Node voltage obtained by the simulation analysis.}
@@ -42,7 +36,7 @@ The results for the Operating Point Analysis are represented in Table \ref{tab:s
   \centering
   \begin{tabular}{|l|r|}
     \hline
-    {\bf Node number} & {\bf Voltage (V)} \\ \hline
+    {\bf Variable} & {\bf Value (V)} \\ \hline
     \input{../sim/OP1_tab}
   \end{tabular}
   \caption{Node voltage obtained by the simulation analysis.}
@@ -52,14 +46,7 @@ The results for the Operating Point Analysis are represented in Table \ref{tab:s
 \subsection{Transient Analysis - Natural Solution}
 \label{subsec:trans_NS}
 
-We begin by  analysing the original circuit in the interval $t \in [0, 20]ms$, with no forced frequency:
-
-\begin{figure}[H] \centering
-\includegraphics[width=0.7\linewidth]{burro.pdf}
-\caption{Simulated circuit.}
-\label{fig:sim_NS}
-\end{figure}
-
+We begin by  analysing the original circuit in the interval $t \in [0, 20]ms$, with no forced frequency, that means, we make $V_s$ = 0V.
 For this analysis, we used the boundary conditions for $V_6$ and $V_8$ obtained in the previous section, with the AC Independent Voltage Source $V_s$ following a sinusoidal signal, displayed in Figure \ref{fig:sim345}. The result of the Transient Analysis is shown in Figure \ref{fig:sim-graph3}.
 
 \begin{figure}[H] \centering

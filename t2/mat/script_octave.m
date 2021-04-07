@@ -108,7 +108,7 @@ hold on;
 
 xlabel ("t[ms]");
 ylabel ("v6(t), vo(t) [V]");
-print (hf, "forced.eps", "-depsc");
+print (hf, "natural.eps", "-depsc");
 
 
 
@@ -135,52 +135,9 @@ plot (t2, vsn, "g2");
 
 xlabel ("t[ms]");
 ylabel ("v6(t), vo(t) [V],");
-print (h2, "meh.eps", "-depsc");
+print (h2, "total.eps", "-depsc");
 
 %time axis: -1 to 6 with 1us steps
-#{
-t3=[-1:1e-1:6];
-
-f=10.^(t3);
-V6f=(arg((-Kb*X4(2) + (1/R5+Kb)*X4(4) + i*2*pi*f*C*X4(7)))-arg((1/R5+i*2*pi*f*C)));
-
-faseVs=0*t3;
-
-VV6=abs(-Kb*X4(2) + (1/R5+Kb)*X4(4) + i*2*pi*f*C*X4(7))/abs(1/R5+i*2*pi*f*C)*exp(i*V6f)
-faseVc=arg(VV6-X4(7));
-
-
-h3 = figure ();
-plot (t3, V6f*180/pi, "g5");
-hold on;
-plot (t3, faseVs, "g3");
-hold on;
-plot (t3, faseVc*180/pi, "g4");
-
-xlabel ("f[Db]");
-ylabel ("fase [V],");
-axis ([-1,6,-180,3])
-print (h3, "fase.eps", "-depsc");
-
-
-TV6=20*log10(abs(-Kb*X4(2) + (1/R5+Kb)*X4(4) + i*2*pi*f*C*X4(7)))-20*log10(abs(1/R5+i*2*pi*f*C));
-
-TVs=20*log10(1+0*t3);
-
-TVc=20*log10(abs(VV6-X4(7)));
-
-h4 = figure ();
-plot (t3, TV6, "g5");
-hold on;
-plot (t3, TVs, "g3");
-hold on;
-plot (t3, TVc, "g4");
-
-xlabel ("f[Db]");
-ylabel ("tensão [V],");
-axis ([-1,6,-90,10]);
-print (h4, "burp.eps", "-depsc");
-#}
 
 t3=ones(71);
 
@@ -223,15 +180,9 @@ Vcm(i+1) = abs(Xfreq(5) - Xfreq(7));
 
 endfor
 
-#V6f=arg((-Kb*X4(2) + (1/R5+Kb)*X4(4) + i*2*pi*f*C*X4(7)))-arg((1/R5+i*2*pi*f*C));
-#V6f=(-Kb*X4(2) + (1/R5+Kb)*X4(4) + i*2*pi*f*C*X4(7))/(1/R5+i*2*pi*f*C)
-
 faseVs=0*t3;
 
-#VV6=abs(-Kb*X4(2) + (1/R5+Kb)*X4(4) + i*2*pi*f*C*X4(7))/abs(1/R5+i*2*pi*f*C)*exp(i*arg((-Kb*X4(2) + (1/R5+Kb)*X4(4) + i*2*pi*f*C*X4(7)))-i*arg((1/R5+i*2*pi*f*C)))
-#faseVc=arg(VV6-X4(7))
 
-#fase=(V6f1)-(V6f1);
 
 h3 = figure ();
 plot (t3, V6f*180/pi, "g5");
@@ -242,7 +193,7 @@ plot (t3, Vcf*180/pi, "g4");
 
 xlabel ("f[ln(Hz)]");
 ylabel ("fase [º],");
-print (h3, "fase.eps", "-depsc");
+print (h3, "phase.eps", "-depsc");
 
 
 #TV6=20*log10(abs(-Kb*X4(2) + (1/R5+Kb)*X4(4) + i*2*pi*f*C*X4(7)))-20*log10(abs(1/R5+i*2*pi*f*C))
@@ -262,7 +213,7 @@ plot (t3, 20*log10(Vcm), "g4");
 
 xlabel ("f[ln(Hz)]");
 ylabel ("Magnitude [dB],");
-print (h4, "burp.eps", "-depsc");
+print (h4, "magnitude.eps", "-depsc");
 
 
 printf("op2_TAB\n")
