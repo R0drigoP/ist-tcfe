@@ -64,7 +64,7 @@ We begin by  analysing the original circuit in the interval $t \in [0, 20]ms$, w
 For this analysis, we used the boundary conditions for $V_6$ and $V_8$ obtained in the previous section, with the AC Independent Voltage Source $V_s$ following a sinusoidal signal, displayed in Figure \ref{fig:sim345}. The result of the Transient Analysis is shown in Figure \ref{fig:sim-graph3}.
 
 \begin{figure}[H] \centering
-\includegraphics[width=0.4\linewidth]{../sim/trans3.pdf}
+\includegraphics[width=0.4\linewidth]{../sim/ns.pdf}
 \caption{Voltage of $V_6$ (V) vs. Time ($\in [0, 20]ms$) - Transient Analysis of the Original Circuit with No Forced Frequency}
 \label{fig:sim-graph3}
 \end{figure}
@@ -77,8 +77,8 @@ As expected, the voltage of $V_6$ decays exponentially, as the Capacitor stores 
 In this section, we repeat the exact same steps taken in the previous one, except we introduce a forced frequency signal of 1kHz on $V_s$. In Figure \ref{fig:sim-graph4}, we can observe the sum of both the natural and forced response of the circuit in node 6.
 
 
-\begin{figure}[h] \centering
-\includegraphics[width=0.4\linewidth]{../sim/trans4.pdf}
+\begin{figure}[H] \centering
+\includegraphics[width=0.4\linewidth]{../sim/vt.pdf}
 \caption{Voltage of $V_6$ and of the stimulus (V) vs. Time ($\in [0, 20]ms$) - Transient Analysis of the Original Circuit with a Forced Frequency of 1kHz}
 \label{fig:sim-graph4}
 \end{figure}
@@ -87,6 +87,29 @@ It is clear that the shape of $V_6(t)$ is the same as before, only now modulated
 
 \subsection{Frequency Analysis}
 \label{subsec:sim_freq}
+
+We now look at the original circuit in a range of forced frequencies of 0.1Hz to 1MHz. In Figure \ref{fig:sim_db}, we can observe the Amplitudes of $V_6$, $V_s$ and $V_c$ in dB, respectively represented by db(v(6)), db(v(1)) and db(v(6) - v(8)), as a function of the logarithm of the ranges of frequencies previously mentioned.
+
+\begin{figure}[H] \centering
+\includegraphics[width=0.4\linewidth]{../sim/db.pdf}
+\caption{Voltage of $V_6$ and of the stimulus (V) vs. Time ($\in [0, 20]ms$) - Transient Analysis of the Original Circuit with a Forced Frequency of 1kHz}
+\label{fig:sim_db}
+\end{figure}
+
+The first thing to notice is that the amplitude of $V_s$ is always zero. This happens because $V_s$ is the voltage source, so it mantains its amplitude constant throughout frequency changes, unlike $V_6$. It is zero because the amplitude would be 1 in Volts, but, transforming the units into dB, we have to do the base 10 logarithm of the amplitude in Volts, which results in an amplitude in dB of zero. Also, $V_6$ starts at being constant and ends like that too, because at low frequencies the capacitor acts as an open circuit and for high frequencies, it acts as a short circuit.
+\par
+Lastly, we take a look at the phase of $V_6$, $V_s$ and $V_c$, respectively ph(v(6)), ph(v(1)) and ph(v(6) - v(8)), as a function of the same range of frequencies in Figure \ref{fig:sim_ph}.
+
+\begin{figure}[h] \centering
+\includegraphics[width=0.4\linewidth]{../sim/ph.pdf}
+\caption{Phase of $V_6$, $V_s$ and $V_c$ (degrees) vs. Frequency (Hz) - Frequency Analysis of the Original Circuit}
+\label{fig:sim_ph}
+\end{figure}
+
+
+As we can observe, all of the phases are 0 at $f=0.1Hz$ and then vary according to the frequency. 
+
+
 
 
 

@@ -26,22 +26,20 @@ $K_c$ & 8.3495605781 $k\Omega$ \\ \hline
 \label{tab:values}
 \end{table}
 
-\subsection{Node method}
+\subsection{Equilibrium before T=0}
 Using Kirchhoff Current Law (KCL) at all nodes, we end up with these equations:
 \begin{equation}\label{eq:node}
   \begin{cases}
-  (1) I_d = \frac{V_1 - V_6}{R_5} + I_b \\
-  (2) I_b = \frac{V_2 - V_3}{R_2} \\
-  (3) \frac{V_2 - V_3}{R_2} = \frac{V_3 - V_4}{R_1} + \frac{V_3 - V_6}{R_3} \\
-  (4) V_4 - V_5 = V_a \\
-  (5) \frac{V_6 - V_5}{R_4} = \frac{V_5 - V_7}{R_6} + \frac{V_4 - V_3}{R_1} \\ %Dizer que esta ultima parcela é Ir4->r3?
-  (6) V_6 = V_c \\
-  (7) \frac{V_5 - V_7}{R_6} = \frac{V_7}{R_7} \\
-  I_b = K_bV_b = K_b(V_3 - V_6) \\
-  V_c = K_cI_c = K_c \frac{V_5 - V_7}{R_6} \\
+  (1) V_1 = V_s \\
+  (2) \frac{V_1 - V_2}{R_1} + \frac{V_3 - V_2}{R_2} + \frac{V_5 - V_2}{R_3} = 0 \\
+  (3) \frac{V_2 - V_3}{R_2} + K_b(V_2 - V_5) = 0 \\
+  (5) V_5 - V_8 + K_d\frac{V_7}{R_6} = 0 \\
+  (6) \frac{V_5 - V_6}{R_5} - K_b(V_2-V_5) = I_c \\
+  (7) \frac{V_8 - V_7}{R_7} - \frac{V_7}{R_6} = 0 \\
+  (8) \frac{V_7 - V_8}{R_7} - \frac{V_5}{R_4} + \frac{V_6 - V_5}{R_5} + \frac{V_2 - V_5}{R_3} = -I_c \\
 \end{cases}
 \end{equation}
-Where $V_i$ represents the voltage at node $i$. It is important to notice that, because nodes 4 and 5 were connected to a voltage source, $V_a$, we use the source equation on equation \ref{eq:node}.4, and for equation \ref{eq:node}.5, we consider the super-node 4-5. We used a similar though process for equation \ref{eq:node}.6.
+Where $V_i$ represents the voltage at node $i$. It is important to notice that, because nodes 1 and 4 were connected to a voltage source, $V_s$, we use the source equation on equation \ref{eq:node}.1. Similarly for nodes 5 and 8, which are connected to $V_d$, we use the source equation \ref{eq:node}.5. Finally, for equation \ref{eq:node}.7, we consider the super-node 5-8. We consider that the circuit has already reached equilibrium, so the current in the capacitor, I_c, is zero.
 \par
 simplifying these expressions and substituting variables by their numeric number given in table \ref{tab:values}, and solving this system of linear equations using \textit{Octave}, we end up with:
 \begin{table}[H]
@@ -55,19 +53,23 @@ simplifying these expressions and substituting variables by their numeric number
   \label{tab:node}
 \end{table}
 \par
-We can get the current flowing through each branch using Ohm's law.
 
-\subsection{Mesh method}
-Using Kirchhoff Voltage Law (KVL) in all meshes, we can write these equations:
-\begin{equation}\label{eq:mesh}
+\subsection{Equivalent Resistance}
+To calculate the equivalent resistance, $R_eq$, as seen in the capacitor's terminals, we replace it with a voltage source $V_x=V_6-V_8$ and remove all the independent sources (in our case, make $V_s=0$). We also simplified the circuit by replacing $R_6$ and $R_7$ by $R_{67}=R_6+R_7$. We then run nodal analysis to get the following equations:
+\begin{equation}\label{eq:nodeReq}
 \begin{cases}
-  (A) R_1I'_A + R_3(I'_A + I'_B) + R_4(I'_A + I'_C) = V_a \\
-  (B) I'_B = I_b = K_bV_b = K_bR_3(I'_A + I'_B) \\
-  (C) R_4(I'_A+I'_C) + R_6I'_C + R_7I'_C = K_cI_c = K_cI'_C \\
-  (D) I'_D = -I_d \\
+  (2) \frac{V_1 - V_2}{R_1} + \frac{V_3 - V_2}{R_2} + \frac{V_5 - V_2}{R_3} = 0 \\
+  (3) \frac{V_2 - V_3}{R_2} + K_b(V_2 - V_5) = 0 \\
+  (5) V_5 - V_8 + K_d\frac{V_8}{R_{67}} = 0 \\
+  (6) V_6 - V_8 = Vx \\
+  (8) \frac{V_8}{R_{67}} - \frac{V_5}{R_4} + \frac{V_2 - V_5}{R_3} - K_b(V_2-V_5)= 0 \\
 \end{cases}
 \end{equation}
-Because mesh B was connected to a current source, we can write the equation \ref{eq:mesh}.B for this mesh. Similarly, we can write equation \ref{eq:mesh}.D, for mesh D. As done in the previous subsection, we can rearrange terms and replace the variables by their numeric number given in table \ref{tab:mesh}. Solving this system of linear equations using \textit{Octave}, we end up with:
+
+Again, because nodes 6 and 8 were connected to a voltage source, $V_x$, we use the source equation on equation \ref{eq:nodeReq}.6, and for equation \ref{eq:node}.8, we consider the super-node 5-6-8. Equation \ref{eq:nodeReq}.5 is still the source equation for nodes 5 and 8.
+After solving the system, to find the current passing through $V_x$, we can rewrite equation in node 6 as $I_x= \frac{R_5 - R_6} - K_b(V_2 - V_5)$, and then get $R_eq=\frac{V_x}/{I_X$}.
+The results obtained are:
+
 \begin{table}[H]
   \centering
   \begin{tabular}{|l|r|}
@@ -78,7 +80,29 @@ Because mesh B was connected to a current source, we can write the equation \ref
   \caption{Theorethical Current flowing in each mesh.}
   \label{tab:mesh}
 \end{table}
-Using this information, we can now solve for the current flowing in each component, as seen in table \ref{tab:comp}
+
+
+\subsection{Time Reponse}
+In this section we will find the evolution of the circuit in respect to time, with frequency $f= 1kHz$.
+Firstly the natural solution of $v_6(t)$ is a negative exponential given by $v_{6n}=V_x*e^{-\frac{t}{R_{eq}C}}$, as shown in the graph:
+GRAFICO!!!!!!!!!!!!!
+
+To find the forced solution we will run nodal analysis using a phasor voltage $V_s=1$ and replacing C with its impedance $Z_c=\frac{1}{iwC}$. We get the equation system:
+
+\begin{equation}\label{eq:nodeForced}
+  \begin{cases}
+  (1) V_1 = 1 \\
+  (2) \frac{V_1 - V_2}{R_1} + \frac{V_3 - V_2}{R_2} + \frac{V_5 - V_2}{R_3} = 0 \\
+  (3) \frac{V_2 - V_3}{R_2} + K_b(V_2 - V_5) = 0 \\
+  (5) V_5 - V_8 + K_d\frac{V_7}{R_6} = 0 \\
+  (6) \frac{V_5 - V_6}{R_5} - K_b(V_2-V_5) + iwC(V_8-V_6)= 0 \\
+  (7) \frac{V_8 - V_7}{R_7} - \frac{V_7}{R_6} = 0 \\
+  (8) \frac{V_7 - V_8}{R_7} - \frac{V_5}{R_4} + \frac{V_6 - V_5}{R_5} + \frac{V_2 - V_5}{R_3} - iwC(V_8-V_6) = 0 \\
+\end{cases}
+\end{equation}
+
+The complex amplitudes of the nodes obtained by solving the system is shown in the table below:
+
 \begin{table}[H]
   \centering
   \begin{tabular}{|l|r|}
@@ -91,6 +115,22 @@ Using this information, we can now solve for the current flowing in each compone
 \end{table}
 \par
 
+The forced solution $v_6f(t)=$??????????????????????????
+
+Now we get the total solution by summing the natural and forced solutions.
+The graph below shows the comparison between $v_6(t)$ and $v_s(t)$ from -5ms to 20ms.
+
+GRAFICO2!!!!!!!!!!!!!!!!
+
+
+\subsection{Frequency Response}
+Since the only component that is affected by frequency is the capacitor, the next graph shows both $v_s$, $v_6$ and $v_c=v_6 - v_8$ as a function of frequency. 
+
+GRAFICO3!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+Finally, the next graph shows the logaritm of the phase of  $v_s$, $v_6$ and $v_c$ as a function of frequency.
+
+GRAFICO4!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 %=========================================================================================================================0
 
 
