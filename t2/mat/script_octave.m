@@ -217,13 +217,13 @@ print (h4, "magnitude.eps", "-depsc");
 
 
 printf("op2_TAB\n")
-printf("$V_1$ = %.15e + i%.15e\n", real(X4(1)), imag(X4(1)))
-printf("$V_2$ = %.15e + i%.15e\n", real(X4(2)), imag(X4(2)))
-printf("$V_3$ = %.15e + i%.15e\n", real(X4(3)), imag(X4(3)))
-printf("$V_5$ = %.15e + i%.15e\n", real(X4(4)), imag(X4(4)))
-printf("$V_6$ = %.15e + i%.15e\n", real(X4(5)), imag(X4(5)))
-printf("$V_7$ = %.15e + i%.15e\n", real(X4(6)), imag(X4(6)))
-printf("$V_8$ = %.15e + i%.15e\n", real(X4(7)), imag(X4(7)))
+printf("$\\widetilde{V_1}$ = %.15e + i%.15e\n", real(X4(1)), imag(X4(1)))
+printf("$\\widetilde{V_2}$ = %.15e + i%.15e\n", real(X4(2)), imag(X4(2)))
+printf("$\\widetilde{V_3}$ = %.15e + i%.15e\n", real(X4(3)), imag(X4(3)))
+printf("$\\widetilde{V_5}$ = %.15e + i%.15e\n", real(X4(4)), imag(X4(4)))
+printf("$\\widetilde{V_6}$ = %.15e + i%.15e\n", real(X4(5)), imag(X4(5)))
+printf("$\\widetilde{V_7}$ = %.15e + i%.15e\n", real(X4(6)), imag(X4(6)))
+printf("$\\widetilde{V_8}$ = %.15e + i%.15e\n", real(X4(7)), imag(X4(7)))
 printf("op2_END\n")
 
 printf("op1_TAB\n")

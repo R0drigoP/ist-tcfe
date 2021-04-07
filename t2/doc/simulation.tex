@@ -25,6 +25,8 @@ Compared to the theoretical analysis results, we notice that both are similar, h
 
 Compared to the theoretical analysis results, we notice that, like in subsection \ref{subsec:node_sim}, both are similar, having differences $\sim$ $1\times10^{-4}$\%. We think the causes are the same that we described earlier.
 
+\newpage
+
 \subsection{Finding the initial conditions of the circuit}
 \label{subsec:init_conds}
 
@@ -43,6 +45,8 @@ The results for the Operating Point Analysis are represented in Table \ref{tab:s
   \label{tab:sim_op_V}
 \end{table}
 
+\newpage
+
 \subsection{Transient Analysis - Natural Solution}
 \label{subsec:trans_NS}
 
@@ -50,7 +54,7 @@ We begin by  analysing the original circuit in the interval $t \in [0, 20]ms$, w
 For this analysis, we used the boundary conditions for $V_6$ and $V_8$ obtained in the previous section, with the AC Independent Voltage Source $V_s$ following a sinusoidal signal, displayed in Figure \ref{fig:sim345}. The result of the Transient Analysis is shown in Figure \ref{fig:sim-graph3}.
 
 \begin{figure}[H] \centering
-\includegraphics[width=0.4\linewidth]{../sim/vn.pdf}
+\includegraphics[width=0.7\linewidth]{../sim/vn.pdf}
 \caption{Voltage of $V_6$ (V) vs. Time ($\in [0, 20]ms$) - Transient Analysis of the Original Circuit with No Forced Frequency}
 \label{fig:sim-graph3}
 \end{figure}
@@ -64,7 +68,7 @@ In this section, we repeat the exact same steps taken in the previous one, excep
 
 
 \begin{figure}[H] \centering
-\includegraphics[width=0.4\linewidth]{../sim/vt.pdf}
+\includegraphics[width=0.7\linewidth]{../sim/vt.pdf}
 \caption{Voltage of $V_6$ and of the stimulus (V) vs. Time ($\in [0, 20]ms$) - Transient Analysis of the Original Circuit with a Forced Frequency of 1kHz}
 \label{fig:sim-graph4}
 \end{figure}
@@ -77,7 +81,7 @@ It is clear that the shape of $V_6(t)$ is the same as before, only now modulated
 We now look at the original circuit in a range of forced frequencies of 0.1Hz to 1MHz. In Figure \ref{fig:sim_db}, we can observe the Amplitudes of $V_6$, $V_s$ and $V_c$ in dB, respectively represented by db(v(6)), db(v(1)) and db(v(6) - v(8)), as a function of the logarithm of the ranges of frequencies previously mentioned.
 
 \begin{figure}[H] \centering
-\includegraphics[width=0.4\linewidth]{../sim/db.pdf}
+\includegraphics[width=0.7\linewidth]{../sim/db.pdf}
 \caption{Voltage of $V_6$ and of the stimulus (V) vs. Time ($\in [0, 20]ms$) - Transient Analysis of the Original Circuit with a Forced Frequency of 1kHz}
 \label{fig:sim_db}
 \end{figure}
@@ -86,8 +90,8 @@ The first thing to notice is that the amplitude of $V_s$ is always zero. This ha
 \par
 Lastly, we take a look at the phase of $V_6$, $V_s$ and $V_c$, respectively ph(v(6)), ph(v(1)) and ph(v(6) - v(8)), as a function of the same range of frequencies in Figure \ref{fig:sim_ph}.
 
-\begin{figure}[h] \centering
-\includegraphics[width=0.4\linewidth]{../sim/ph.pdf}
+\begin{figure}[H] \centering
+\includegraphics[width=0.7\linewidth]{../sim/ph.pdf}
 \caption{Phase of $V_6$, $V_s$ and $V_c$ (degrees) vs. Frequency (Hz) - Frequency Analysis of the Original Circuit}
 \label{fig:sim_ph}
 \end{figure}

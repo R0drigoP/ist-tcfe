@@ -1,4 +1,4 @@
-all: data.txt tabs
+all: data.txt tabs convert
 
 tabs: octave.log
 	$(eval OCTABS=$(shell grep _TAB $< | sed 's/_TAB//g' | sed ':a;N;$!ba;s/\n/ /g'))
@@ -10,7 +10,10 @@ octave.log: script_octave.m
 data.txt: t2_datagen.py
 	python $< > $@
 
+convert: 
+	ls *.eps | awk '{system("epstopdf "$$0 )}'
+
 clean:
-	@rm -f data.txt octave.log octave-workspace *.eps *.tex *.cir *~
+	@rm -f data.txt octave.log octave-workspace *.eps *.tex *.cir *.pdf *~
 
 .PHONY: clean
