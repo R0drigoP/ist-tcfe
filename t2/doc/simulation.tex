@@ -1,3 +1,5 @@
+\newpage
+
 \section{Simulation Analysis}
 \label{sec:simulation}
 
@@ -6,17 +8,17 @@ For the circuit simulation we used the \textit{Ngspice} software. It is importan
 \subsection{Operating Point Analysis for $t<0$}
 \label{subsec:op_point}
 
-In this period of time, $v_s (t)= V_s$ V and the circuit is time static, which means that the Capacitor C behaves as an open circuit. 
+In this period of time, $v_s (t)= V_s$ and the circuit is time static, which means that the Capacitor C behaves as an open circuit. 
 
 Table \ref{tab:sim1} shows the node voltages obtained using the simulated operating point results for the circuit under analysis, for $t<0$.
 \begin{table}[H]
   \centering
   \begin{tabular}{|l|r|}
     \hline    
-    {\bf Variable} & {\bf Value (V or A)} \\ \hline
+    {\bf Variable} & {\bf Value [V or A]} \\ \hline
     \input{../sim/OP_tab}
   \end{tabular}
-  \caption{Node voltage obtained by the simulation analysis.}
+  \caption{Node voltage and branch current obtained by the simulation analysis.}
   \label{tab:sim1}
 \end{table}
 
@@ -38,7 +40,7 @@ The results for the Operating Point Analysis are represented in Table \ref{tab:s
     {\bf Variable} & {\bf Value (V)} \\ \hline
     \input{../sim/OP1_tab}
   \end{tabular}
-  \caption{Node voltage obtained by the simulation analysis.}
+  \caption{Node voltage and branch current obtained by the simulation analysis.}
   \label{tab:sim2}
 \end{table}
 
@@ -52,7 +54,7 @@ For this analysis, we used the boundary conditions for $V_6$ and $V_8$ obtained 
 
 \begin{figure}[H] \centering
 \includegraphics[width=0.7\linewidth]{../sim/vn.pdf}
-\caption{Voltage of $V_6$ (V) vs. Time ($\in [0, 20]ms$) - Transient Analysis of the Original Circuit with No Forced Frequency}
+\caption{Simulated Natural Solution.}
 \label{fig:sim-graph3}
 \end{figure}
 
@@ -66,7 +68,7 @@ In this section, we repeat the exact same steps taken in the previous one, excep
 
 \begin{figure}[H] \centering
 \includegraphics[width=0.7\linewidth]{../sim/vt.pdf}
-\caption{Voltage of $V_6$ and of the stimulus (V) vs. Time ($\in [0, 20]ms$) - Transient Analysis of the Original Circuit with a Forced Frequency of 1kHz}
+\caption{Simulated Total and Forced solution.}
 \label{fig:sim-graph4}
 \end{figure}
 
@@ -79,7 +81,7 @@ We now look at the original circuit in a range of forced frequencies of 0.1Hz to
 
 \begin{figure}[H] \centering
 \includegraphics[width=0.7\linewidth]{../sim/db.pdf}
-\caption{Voltage of $V_6$ and of the stimulus (V) vs. Time ($\in [0, 20]ms$) - Transient Analysis of the Original Circuit with a Forced Frequency of 1kHz}
+\caption{Simulated Frequency Response: Magnitude.}
 \label{fig:sim_db}
 \end{figure}
 
@@ -89,7 +91,7 @@ Lastly, we take a look at the phase of $V_6$, $V_s$ and $V_c$, respectively ph(v
 
 \begin{figure}[H] \centering
 \includegraphics[width=0.7\linewidth]{../sim/ph.pdf}
-\caption{Phase of $V_6$, $V_s$ and $V_c$ (degrees) vs. Frequency (Hz) - Frequency Analysis of the Original Circuit}
+\caption{Simulated Frequency Response: Phase.}
 \label{fig:sim_ph}
 \end{figure}
 

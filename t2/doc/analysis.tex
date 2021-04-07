@@ -1,29 +1,6 @@
 \section{Theoretical Analysis}
 \label{sec:analysis}
 
-Firstly, a table with all the given values can be seen in table \ref{tab:values}
-
-\begin{table}[H]
-  \centering
-\begin{tabular}{|l|r|}
-\hline
-{\bf Name} & {\bf Values}         \\ \hline
-$R_1$ & 1.04005394176 $k\Omega$ \\ \hline
-$R_2$ & 2.07146823978 $k\Omega$ \\ \hline
-$R_3$ & 3.06015694112 $k\Omega$ \\ \hline
-$R_4$ & 4.13750728298 $k\Omega$ \\ \hline
-$R_5$ & 3.13205467735 $k\Omega$ \\ \hline
-$R_6$ & 2.01065636997 $k\Omega$ \\ \hline
-$R_7$ & 1.00318758033 $k\Omega$ \\ \hline
-$V_a$ & 5.14514577871 $V$ \\ \hline
-$I_d$ & 1.03830911265 $mA$ \\ \hline
-$K_b$ & 7.04881622155 $mS$ \\ \hline
-$K_c$ & 8.3495605781 $k\Omega$ \\ \hline
-\end{tabular}
-\caption{Given values for the circuit components.}
-\label{tab:values}
-\end{table}
-
 \subsection{Circuit for $t<0$}
 Using Kirchhoff Current Law (KCL) at all nodes, we end up with these equations:
 \begin{equation}\label{eq:node}
@@ -45,7 +22,7 @@ simplifying these expressions and substituting variables by their numeric number
   \centering
   \begin{tabular}{|l|r|}
     \hline    
-    {\bf Variable} & {\bf Value (A or V)} \\ \hline
+    {\bf Variable} & {\bf Value [A or V]} \\ \hline
     \input{../mat/op1_tab}
   \end{tabular}
   \caption{Node voltage and brach current obtained by the theorethical analysis.}
@@ -55,7 +32,7 @@ simplifying these expressions and substituting variables by their numeric number
 
 \subsection{Equivalent Resistance}
 \label{subsec:Req}
-To calculate the equivalent resistance, $R_{eq}$, as seen in the capacitor's terminals, we replace it with a voltage source $V_x=V_6-V_8$ and remove all the independent sources (in our case, make $V_s=0$). We also simplified the circuit by replacing $R_6$ and $R_7$ by $R_{67}=R_6+R_7$. We then run nodal analysis to get the following equations:
+To calculate the equivalent resistance, $R_{eq}$, as seen in the capacitor's terminals, we replace it with a voltage source $V_x=V_6-V_8$ and remove all the independent sources (in our case, make $V_s=0$). We also simplified the circuit by replacing $R_6$ and $R_7$ by $R_{67}=R_6+R_7$. We need this procedure, since there isn't other way to compute $R_{eq}$ as seen from the capacitor's terminals. We then run nodal analysis to get the following equations:
 \begin{equation}\label{eq:nodeReq}
 \begin{cases}
   (2) \frac{V_1 - V_2}{R_1} + \frac{V_3 - V_2}{R_2} + \frac{V_5 - V_2}{R_3} = 0 \\
@@ -77,7 +54,7 @@ The results obtained are:
         {\bf Variable} & {\bf Value} \\ \hline
         \input{../mat/op_tab}
   \end{tabular}
-  \caption{Theorethical Current flowing in each mesh.}
+  \caption{Equivalent Resistance.}
   \label{tab:mesh}
 \end{table}
 
@@ -88,7 +65,7 @@ Firstly the natural solution of $v_6(t)$ is a negative exponential given by $v_{
 
 \begin{figure}[H] \centering
 \includegraphics[width=0.7\linewidth]{../mat/natural.pdf}
-\caption{Simulated circuit.}
+\caption{Theorethical Natural Response.}
 \label{fig:sim_op}
 \end{figure}
 
@@ -113,10 +90,10 @@ The complex amplitudes of the nodes obtained by solving the system is shown in t
   \centering
   \begin{tabular}{|l|r|}
     \hline
-        {\bf Component} & {\bf Current (A)} \\ \hline
+        {\bf Phasor} & {\bf Value (V)} \\ \hline
         \input{../mat/op2_tab}
   \end{tabular}
-  \caption{Theorethical Current flowing through each component.}
+  \caption{Complex amplitudes (Phasors).}
   \label{tab:comp}
 \end{table}
 \par
@@ -128,7 +105,7 @@ The graph below shows the comparison between $v_6(t)$ and $v_s(t)$ from -5ms to 
 
 \begin{figure}[H] \centering
 \includegraphics[width=0.7\linewidth]{../mat/total.pdf}
-\caption{Simulated circuit.}
+\caption{Theorethical Total Solution.}
 \label{fig:sim_op}
 \end{figure}
 
@@ -138,7 +115,7 @@ Since the only component that is affected by frequency is the capacitor, the nex
 
 \begin{figure}[H] \centering
 \includegraphics[width=0.7\linewidth]{../mat/magnitude.pdf}
-\caption{Simulated circuit.}
+\caption{Theorethical Frequency Response: Magnitude.}
 \label{fig:sim_op}
 \end{figure}
 
@@ -146,7 +123,7 @@ Finally, the next graph shows the phase in degrees of $v_s$, $v_6$ and $v_c$ as 
 
 \begin{figure}[H] \centering
 \includegraphics[width=0.7\linewidth]{../mat/phase.pdf}
-\caption{Simulated circuit.}
+\caption{Theorethical Frequency Response: Phase.}
 \label{fig:sim_op}
 \end{figure}
 %=========================================================================================================================
