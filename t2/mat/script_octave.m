@@ -195,10 +195,10 @@ plot (t3, faseVs*180/pi, "g3");
 #hold on;
 plot (t3, Vcf*180/pi, "g4");
 
-legend("V6","Vs(escuro)","VC(rosa)", "location","northeastoutside");
+legend("V6","Vs(dark)","VC(pink)", "location","northeastoutside");
 
 xlabel ("f[ln(Hz)]");
-ylabel ("fase [degrees],");
+ylabel ("phase [degrees],");
 hold off
 print (h3, "phase.eps", "-depsc");
 
@@ -219,7 +219,7 @@ plot (t3, TVs, "g3");
 plot (t3, 20*log10(Vcm), "g4");
 
 #h={'V6','Vs','VC'}
-legend("V6","Vs(escuro)","VC(rosa)", "location","northeastoutside");
+legend("V6","Vs(dark)","VC(pink)", "location","northeastoutside");
 
 xlabel ("f[ln(Hz)]");
 ylabel ("Magnitude [dB],");
