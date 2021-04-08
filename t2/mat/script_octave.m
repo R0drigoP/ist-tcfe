@@ -106,8 +106,8 @@ hf = figure ();
 plot (t, v6, "g");
 hold on;
 legend("V6n","location","northeastoutside");
-xlabel ("t[ms]");
-ylabel ("v6(t), vo(t) [V]");
+xlabel ("t[s]");
+ylabel ("v6(t) [V]");
 hold off
 print (hf, "natural.eps", "-depsc");
 
@@ -135,8 +135,8 @@ plot (t, vsp, "g2");
 plot (t2, vsn, "g2");
 
 legend("V6","V6","Vs","Vs","location","northeastoutside");
-xlabel ("t[ms]");
-ylabel ("v6(t), vo(t) [V],");
+xlabel ("t[s]");
+ylabel ("v6(t), vs(t) [V],");
 hold off
 print (h2, "total.eps", "-depsc");
 
@@ -198,7 +198,7 @@ plot (t3, Vcf*180/pi, "g4");
 
 
 xlabel ("f[ln(Hz)]");
-ylabel ("fase [º],");
+ylabel ("fase [degrees],");
 hold off
 print (h3, "phase.eps", "-depsc");
 
