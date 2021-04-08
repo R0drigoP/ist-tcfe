@@ -17,7 +17,7 @@ Using Kirchhoff Current Law (KCL) at all nodes, we end up with these equations:
 \end{equation}
 Where $V_i$ represents the voltage at node $i$. It is important to notice that, because nodes 1 and 4 were connected to a voltage source, $V_s$, we use the source equation on equation \ref{eq:node}.1. Similarly for nodes 5 and 8, which are connected to $V_d$, we use the source equation \ref{eq:node}.5. Finally, for equation \ref{eq:node}.7, we consider the super-node 5-8. We consider that the circuit has already reached equilibrium, so the current in the capacitor, $I_c$, is zero.
 \par
-simplifying these expressions and substituting variables by their numeric number given in table \ref{tab:values}, and solving this system of linear equations using \textit{Octave}, we end up with:
+simplifying these expressions and substituting variables by their numeric value, and solving this system of linear equations using \textit{Octave}, we end up with:
 \begin{table}[H]
   \centering
   \begin{tabular}{|l|r|}
