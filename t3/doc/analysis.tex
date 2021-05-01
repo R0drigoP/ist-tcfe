@@ -1,0 +1,131 @@
+\section{Theoretical Analysis}
+\label{sec:analysis}
+
+\subsection{Circuit for $t<0$}
+Using Kirchhoff Current Law (KCL) at all nodes, we end up with these equations:
+\begin{equation}\label{eq:node}
+  \begin{cases}
+    (1) V_1 = V_s \\
+    (2) \frac{V_1 - V_2}{R_1} + \frac{V_3 - V_2}{R_2} + \frac{V_5 - V_2}{R_3} = 0 \\
+    (3) \frac{V_2 - V_3}{R_2} + K_b(V_2 - V_5) = 0 \\
+    (5) V_5 - V_8 + K_d\frac{V_7}{R_6} = 0 \\
+    (6) \frac{V_5 - V_6}{R_5} - K_b(V_2-V_5) = I_c \\
+    (7) \frac{V_8 - V_7}{R_7} - \frac{V_7}{R_6} = 0 \\
+    (8) \frac{V_7 - V_8}{R_7} - \frac{V_5}{R_4} + \frac{V_6 - V_5}{R_5} + \frac{V_2 - V_5}{R_3} = -I_c \\
+    I_c = 0V \\
+  \end{cases}
+\end{equation}
+Where $V_i$ represents the voltage at node $i$. It is important to notice that, because nodes 1 and 4 were connected to a voltage source, $V_s$, we use the source equation on equation \ref{eq:node}.1. Similarly for nodes 5 and 8, which are connected to $V_d$, we use the source equation \ref{eq:node}.5. Finally, for equation \ref{eq:node}.7, we consider the super-node 5-8. We consider that the circuit has already reached equilibrium, so the current in the capacitor, $I_c$, is zero.
+\par
+Simplifying these expressions and substituting variables by their numeric value, and solving this system of linear equations using \textit{Octave}, we end up with:
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Variable} & {\bf Value [A or V]} \\ \hline
+    \input{../mat/op1_tab}
+  \end{tabular}
+  \caption{Node voltage and brach current obtained by the theorethical analysis.}
+  \label{tab:node}
+\end{table}
+\par
+
+\subsection{Equivalent Resistance}
+\label{subsec:Req}
+To calculate the equivalent resistance, $R_{eq}$, as seen in the capacitor's terminals, we replace it with a voltage source $V_x=V_6-V_8$ and remove all the independent sources (in our case, make $V_s=0$). We also simplified the circuit by replacing $R_6$ and $R_7$ by $R_{67}=R_6+R_7$. We need this procedure, since there isn't other way to compute $R_{eq}$ as seen from the capacitor's terminals. We then run nodal analysis to get the following equations:
+\begin{equation}\label{eq:nodeReq}
+\begin{cases}
+  (2) \frac{V_1 - V_2}{R_1} + \frac{V_3 - V_2}{R_2} + \frac{V_5 - V_2}{R_3} = 0 \\
+  (3) \frac{V_2 - V_3}{R_2} + K_b(V_2 - V_5) = 0 \\
+  (5) V_5 - V_8 + K_d\frac{V_8}{R_{67}} = 0 \\
+  (6) V_6 - V_8 = Vx \\
+  (8) \frac{V_8}{R_{67}} - \frac{V_5}{R_4} + \frac{V_2 - V_5}{R_3} - K_b(V_2-V_5)= 0 \\
+\end{cases}
+\end{equation}
+
+Again, because nodes 6 and 8 were connected to a voltage source, $V_x$, we use the source equation on equation \ref{eq:nodeReq}.6, and for equation \ref{eq:nodeReq}.8, we consider the super-node 5-6-8. Equation \ref{eq:nodeReq}.5 is still the source equation for nodes 5 and 8.
+After solving the system, to find the current passing through $V_x$, we can rewrite equation in node 6 as $I_x= \frac{R_5 - R_6}{R_5} - K_b(V_2 - V_5)$, and then get $R_{eq}=\frac{V_x}{I_x}$.
+The results obtained are:
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline
+        {\bf Variable} & {\bf Value} \\ \hline
+        \input{../mat/op_tab}
+  \end{tabular}
+  \caption{Equivalent Resistance.}
+  \label{tab:mesh}
+\end{table}
+
+
+\subsection{Time Reponse}
+In this section we will find the evolution of the circuit in respect to time, with frequency $f= 1kHz$.
+Firstly the natural solution of $v_6(t)$ is a negative exponential given by $v_{6n}=V_xe^{-\frac{t}{R_{eq}C}}$, as shown in the graph:
+
+\begin{figure}[H] \centering
+\includegraphics[width=0.7\linewidth]{../mat/natural.pdf}
+\caption{Theorethical Natural Response.}
+\label{fig:sim_op}
+\end{figure}
+
+
+To find the forced solution we will run nodal analysis using a phasor $\widetilde{V_s}=1$ V and computing C with its impedance $Z_c=\frac{1}{jwC}$. We get the equation system:
+
+\begin{equation}\label{eq:nodeForced}
+  \begin{cases}
+  (1) V_1 = 1 \\
+  (2) \frac{V_1 - V_2}{R_1} + \frac{V_3 - V_2}{R_2} + \frac{V_5 - V_2}{R_3} = 0 \\
+  (3) \frac{V_2 - V_3}{R_2} + K_b(V_2 - V_5) = 0 \\
+  (5) V_5 - V_8 + K_d\frac{V_7}{R_6} = 0 \\
+  (6) \frac{V_5 - V_6}{R_5} - K_b(V_2-V_5) + jwC(V_8-V_6)= 0 \\
+  (7) \frac{V_8 - V_7}{R_7} - \frac{V_7}{R_6} = 0 \\
+  (8) \frac{V_7 - V_8}{R_7} - \frac{V_5}{R_4} + \frac{V_6 - V_5}{R_5} + \frac{V_2 - V_5}{R_3} - jwC(V_8-V_6) = 0 \\
+\end{cases}
+\end{equation}
+
+The complex amplitudes of the nodes obtained by solving the system is shown in the table below:
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline
+        {\bf Phasor} & {\bf Value (V)} \\ \hline
+        \input{../mat/op2_tab}
+  \end{tabular}
+  \caption{Complex amplitudes (Phasors).}
+  \label{tab:comp}
+\end{table}
+\par
+
+The forced solution $v_6f(t)= |\widetilde{V_6}|sin(2\pi ft + \angle \widetilde{V_6})$
+
+Now we get the total solution by summing the natural and forced solutions.
+The graph below shows the comparison between $v_6(t)$ and $v_s(t)$ from -5ms to 20ms.
+
+\begin{figure}[H] \centering
+\includegraphics[width=0.7\linewidth]{../mat/total.pdf}
+\caption{Theorethical Total Solution.}
+\label{fig:sim_op}
+\end{figure}
+
+
+\subsection{Frequency Response}
+Since the only component that is affected by frequency is the capacitor, the next graph shows both the magnitude of $v_s$, $v_6$ and $v_c=v_6 - v_8$ in decibels, as a function of frequency. 
+
+\begin{figure}[H] \centering
+\includegraphics[width=0.7\linewidth]{../mat/magnitude.pdf}
+\caption{Theorethical Frequency Response: Magnitude.}
+\label{fig:sim_op}
+\end{figure}
+
+Finally, the next graph shows the phase in degrees of $v_s$, $v_6$ and $v_c$ as a function of frequency.
+
+\begin{figure}[H] \centering
+\includegraphics[width=0.7\linewidth]{../mat/phase.pdf}
+\caption{Theorethical Frequency Response: Phase.}
+\label{fig:sim_op}
+\end{figure}
+%=========================================================================================================================
+
+

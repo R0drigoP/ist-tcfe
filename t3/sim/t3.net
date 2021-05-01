@@ -1,0 +1,79 @@
+*Circuito t3_1 
+
+.param n=10
+
+*Vin and tranformer with dependent sources
+
+Vin 1 0 sin(0 230 50 0 0)
+Ftransf 1 0 Etransf n
+Etransf 2 3 1 0 n
+
+
+*Full wave rectifier
+
+Dr1 2 4 Default
+Dr2 3 4 Default
+Dr3 0 3  Default
+Dr4 0 2 Default
+
+*Envelope detector
+
+Re 4 0 1k
+Ce 4 0 400u
+
+*Voltage Regulator
+
+Rv 4 5 8.3356k
+
+Dv1 5 6 Default
+Dv2 6 7 Default
+Dv3 7 8 Default
+Dv4 8 9 Default
+Dv5 9 10 Default
+Dv6 10 11 Default
+Dv7 11 12 Default
+Dv8 12 13 Default
+Dv9 13 14 Default
+Dv10 14 15 Default
+Dv11 15 16 Default
+Dv12 16 17 Default
+Dv13 17 18 Default
+Dv14 18 19 Default
+DV15 19 0 Default
+
+.model Default D
+.op
+.end
+
+.control
+
+*makes plots in color
+set hcopypscolor=0
+set color0=white
+set color1=black
+set color2=red
+set color3=blue
+set color4=violet
+set color5=rgb:3/8/0
+set color6=rgb:4/0/0
+
+********************************************
+*analise no tempo
+tran 0.01M 300M 40m
+hardcopy Vout.ps v(5)
+echo Vout_FIG
+
+hardcopy deviation.ps (v(5)-12)
+echo deviation_FIG
+
+meas tran maxout MAX v(5) from=50m to=300m
+meas tran minout MIN v(5) from=50m to=300m
+meas tran avgout AVG v(5) from=50m to=300m
+
+print maxout
+print minout
+print maxout-minout
+print avgout
+
+.endc
+********************************************
