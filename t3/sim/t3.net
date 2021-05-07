@@ -1,6 +1,6 @@
 *Circuito t3_1 
 
-.param n=1/3
+.param n=1/10
 
 *Vin and tranformer with dependent sources
 
@@ -18,12 +18,12 @@ Dr4 0 2 Default
 
 *Envelope detector
 
-Re 4 0 1k
-Ce 4 0 400u
+Re 4 0 10k
+Ce 4 0 600u
 
 *Voltage Regulator
 
-Rv 4 5 0.219834k
+Rv 4 5 6.0466k
 
 Dv1 5 6 Default
 Dv2 6 7 Default
@@ -39,8 +39,10 @@ Dv11 15 16 Default
 Dv12 16 17 Default
 Dv13 17 18 Default
 Dv14 18 19 Default
-Dv15 19 0 Default
-
+Dv15 19 20 Default
+Dv16 20 21 Default
+Dv17 21 22 Default
+Dv18 22 0 Default
 
 .model Default D
 .op
@@ -62,7 +64,7 @@ set color6=rgb:4/0/0
 *analise no tempo
 tran 0.01M 300M 40m
 hardcopy Vout.ps v(4) v(5)
-echo Vout_FIG
+echo vout_FIG
 
 hardcopy deviation.ps (v(5)-12)
 echo deviation_FIG
