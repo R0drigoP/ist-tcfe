@@ -13,7 +13,7 @@ function y = f (x)
   R2=6046.6;
   Von=0.65;
   y = zeros (1, 1);
-  y(1) = R2*((abs(A*sin(w*x))-2.*Von)/R1+A*w*abs(cos(w*x))*c)-A*abs(sin(w*x))+2.*Von+12.;
+  y(1) = R2*((abs(A*sin(w*x))-2.*Von)/R1+A*w*abs(cos(w*x))*c)-A*abs(sin(w*x))+2.*Von+11.7;
 endfunction
 
 [x, fval, info] = fsolve (@f, 1)
