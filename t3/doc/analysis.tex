@@ -1,8 +1,14 @@
 \section{Theoretical Analysis}
 \label{sec:analysis}
 
-\subsection{Circuit for $t<0$}
-Using Kirchhoff Current Law (KCL) at all nodes, we end up with these equations:
+\subsection{Full Wave Bridge Rectifier}
+For the theoretical analysis of the circuit we simplify the rectifier as a voltage source as shown in the circuit below:
+
+IMAGEM
+
+We considered the ideal diode + voltage source model for the diodes.
+However the diodes make it so that it will work as open circuit when the voltage in the capacitor, $V_c$, is superior to the voltage in said voltage source, $V_s$
+
 \begin{equation}\label{eq:node}
   \begin{cases}
     (1) V_1 = V_s \\
