@@ -3,36 +3,36 @@
 \section{Simulation Analysis}
 \label{sec:simulation}
 
-For the circuit simulation we used the \textit{Ngspice} software. It is important to point that, to simulate a perfect transformer, we needed to replace it by one linear current dependent current source and one linear voltage dependent voltage source. In Figure ** we can se the voltage after the envelope detector and the voltage at the end of the circuit.
+For the circuit simulation we used the \textit{Ngspice} software. It is important to point that, to simulate a perfect transformer, we needed to replace it by one linear current dependent current source and one linear voltage dependent voltage source. In Figure \ref{fig:sim_output} we can se the voltage after the envelope detector (red) and the voltage at the end of the circuit (blue).
 
-%\begin{figure}[H] \centering
-%\includegraphics[width=0.7\linewidth]{../sim/vn.pdf}
-%\caption{Simulated Natural Solution.}
-%\label{fig:sim-graph3}
-%\end{figure}
+\begin{figure}[H] \centering
+\includegraphics[width=0.7\linewidth]{../sim/vout.pdf}
+\caption{Output of the Envelope Detector (red) and Voltage Regulator (blue).}
+\label{fig:sim_output}
+\end{figure}
 
-In Figure ** we have the graph of the voltage at the output subtracted by 12, so we can see better the fluctuations that occur in the output voltage around 12V.
+In Figure \ref{fig:sim_deviation} we have the graph of the voltage at the output subtracted by 12, so we can see better the fluctuations that occur in the output voltage around 12V.
 
-%\begin{figure}[H] \centering
-%\includegraphics[width=0.7\linewidth]{../sim/vn.pdf}
-%\caption{Simulated Natural Solution.}
-%\label{fig:sim-graph3}
-%\end{figure}
+\begin{figure}[H] \centering
+\includegraphics[width=0.7\linewidth]{../sim/deviation.pdf}
+\caption{Deviation from perfect 12V output.}
+\label{fig:sim_deviation}
+\end{figure}
 
-As we can see, a stable 12V output voltage with some deviatons was obtained. In Table ** we can see the average output voltage aswell as its ripple.
+As we can see, a stable 12V output voltage with some deviatons was obtained. In Table \ref{tab:sim_values} we can see the average output voltage (avgout) aswell as its ripple and the final merit.
 
-%\begin{table}[H]
-  %\centering
-  %\begin{tabular}{|l|r|}
-    %\hline    
-    %{\bf Variable} & {\bf Value [V or A]} \\ \hline
-   % \input{../sim/OP_tab}
-  %\end{tabular}
-  %\caption{Node voltage and branch current obtained by the simulation analysis.}
- % \label{tab:sim1}
-%\end{table}
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Variable} & {\bf Value [V or A]} \\ \hline
+    \input{../sim/M_tab}
+  \end{tabular}
+  \caption{Average value ate the output (V), ripple (V) and merit obtained.}
+  \label{tab:sim1}
+\end{table}
 
-Finally, with these results, we obtained a merit of ...
+Comparing these results with those obtained in the theorethical analysis, we can conclude that both differ a bit. In the theorethical ones, the final mean voltage wasn't a perfect 12V in contrast with the ones obtained in the simulation, and the ripple was also higher. This was to be expected, since \textit{Ngspice} uses a diode model much closer to the reality comparing to the ones used in theorethical analysis, since did aproximations in order to obtain simpler equations.
 
 
 

@@ -73,10 +73,16 @@ meas tran maxout MAX v(5) from=50m to=300m
 meas tran minout MIN v(5) from=50m to=300m
 meas tran avgout AVG v(5) from=50m to=300m
 
-print maxout
-print minout
-print maxout-minout
+*print maxout
+*print minout
+let ripple = maxout-minout
+let merit = 1/(618.2466*(ripple) + abs(avgout - 12) + 1e-6)
+
+echo "M_TAB"
 print avgout
+print ripple
+print merit
+echo "M_END"
 
 .endc
 ********************************************
