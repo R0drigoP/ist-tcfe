@@ -28,9 +28,7 @@ print v(1)-v(2)
 *print @Q1[ic]
 *print @Rf[i]
 
-*echo  "op_TAB"
 *print all
-*echo  "op_END"
 
 *ac dec 10 10 1k
 *print  (mean(v(1)-v(2)))
@@ -38,14 +36,6 @@ print v(1)-v(2)
 *hardcopy DiodoAcI.ps i(Vs) 
 *hardcopy DiodoAcV.ps v(1)-v(2) 
 
-
-
-*tran 1e-5 50e-3
-*hardcopy Diodo.ps  v(1) xlabel 'Time' ylabel 'Voltage'
-*hardcopy DiodoI.ps  i(Vs) xlabel 'Time' ylabel 'Voltage'
-*print (maximum(v(1,2))-mean(v(1,2)))
-*print (maximum(i(Vs))-mean(i(Vs)))
-quit
 .endc
 
 
