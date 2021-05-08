@@ -24,7 +24,7 @@ Where we consider $V_2=11.7$ and $V_s=|\frac{230}{10} sin(wt)|-2\times V_{on}$ i
 Then we use the value of $t_{off}$ in the first cycle to find the instant where the voltage goes back to $V_s$, $t_{on}$. This happens when $V_s=V_c$ again:
 
 \begin{equation}\label{eq:t_on}
-V_s=V_s(t_{off})*e^{-\frac{t-t{off}}{RC}}
+V_s=V_s(t_{off})\times e^{-\frac{t-t{off}}{RC}}
 \end{equation}
 
 Where R is the equivalent resistance as seen in the capacitor and is given by $R=\frac{R_1 R_2}{R_1 + R_2}$. Again solving with octave, $t_{on}=0.014714 + 0.01k$ (k integer). It is important to note that the solving method can give either this solution, or the trivial solution $t_{on}=t_{off}$.
@@ -36,7 +36,6 @@ Consider the voltage in the envelope as $V1=V_1 + v_1$ in which $V_1$ is the con
 Doing the same for V2, we already know that $V_2$ is 11.7, so we only need to calculate $v_2$ using the incremental analysis and node analysis methods.
 
 \begin{equation}\label{eq:v_2}
-
 \begin{cases}
 v_2=v_1\times \frac{18 r_d}{18 r_d + R_2} \\
 r_d=\frac{V_{on}}{V_T e^{\frac{V_{on}}{V_T}}}\\
