@@ -1,0 +1,71 @@
+\section{Theoretical Analysis}
+\label{sec:analysis}
+
+\subsection{Full Wave Bridge Rectifier}
+For the theoretical analysis of the circuit we simplify the rectifier as a voltage source as shown in the circuit below:
+
+\begin{figure}[H] \centering
+\includegraphics[width=0.7\linewidth]{../doc/cir_analysis.pdf}
+\caption{Circuito simplificado}
+\label{fig:cir_simples}
+\end{figure}
+
+We considered the ideal diode + voltage source model for the diodes, so the voltage $V_s$ is given by $V_s= |V_t|-2\times V_{on}$, where $V_t$ is the voltage in the transformer.
+\par
+However the diodes make it so that it will work as open circuit when the voltage in the capacitor, $V_c$, is superior to the voltage in said voltage source, $V_s$.
+
+\subsection{Envelope}
+Since we know that the voltage on the terminals of the envelope, $V4$, is given by either $V_s$ or $V_c$, we need to know in which intervals it has each each value. The circuit will have a cyclic behaviour, with half the period of the original voltage source (because of the full wave rectifier), which is $T=0.01$.
+\par
+Firstly we need to find the instant in which the voltage passes from $V_s$ to $V_c$, and we will call it $t_{off}$. This happens when $V_s$ is an open circuit, so we use the nodal analysis on node 1 to get:
+
+\begin{equation}\label{eq:t_off}
+\frac{V_s}{R_1}+\frac{V_s+V_5}{R_2}+C\times\frac{dV_s}{dt}=0
+\end{equation}
+
+Where we consider $V_5=11.7$ and $V_s=|\frac{230}{10} sin(wt)|-2\times V_{on}$ is a function of time. Solving this equation using octave, we obtained $V_{off}=0.0050 + 0.01k$ (k integer).
+\par
+Then we use the value of $t_{off}$ in the first cycle to find the instant where the voltage goes back to $V_s$, $t_{on}$. This happens when $V_s=V_c$ again:
+
+\begin{equation}\label{eq:t_on}
+V_s=V_s(t_{off})\times e^{-\frac{t-t{off}}{RC}}
+\end{equation}
+
+Where R is the equivalent resistance as seen in the capacitor and is given by $R=\frac{R_1 R_2}{R_1 + R_2}$. Again solving with octave, $t_{on}=0.014714 + 0.01k$ (k integer). It is important to note that the solving method can give either this solution, or the trivial solution $t_{on}=t_{off}$.
+\par
+Now that we have the intervals we can plot a graph of the voltage in the envelope, which is shown later in graph \ref{fig:tensaoF}.
+
+\subsection{Voltage regulator}
+Consider the voltage in the envelope as $V4=V_4 + v_4$ in which $V_4$ is the continuous component (given by the average, $\overline{V4}$) and $v_4$ is the oscillation (given by $\overline{V4} - V4$).
+Doing the same for V5, we already know that $V_5$ is 11.7, so we only need to calculate $v_5$ using the incremental analysis and node analysis methods.
+
+\begin{equation}\label{eq:v_2}
+\begin{cases}
+v_5=v_4\times \frac{18 r_d}{18 r_d + R_2} \\
+r_d=\frac{V_{on}}{V_T e^{\frac{V_{on}}{V_T}}}\\
+\end{cases}
+\end{equation}
+
+Where $v_4= V4 - V_4$ and $r_d=12.7727$ is the diode's internal resistance.
+\par
+Finally we can plot the output voltage of our circuit, $V5=V_5 + v_5$. The graph below shows the plot of both the envelope voltage and the final output voltage:
+
+\begin{figure}[H] \centering
+\includegraphics[width=0.7\linewidth]{../mat/tensao.pdf}
+\caption{Envelope and Output Voltages}
+\label{fig:tensaoF}
+\end{figure}
+
+For a better analysis of the output voltage the next plot shows the difference between the the output voltage and the pretended voltage, $V5-12$:
+
+\begin{figure}[H] \centering
+\includegraphics[width=0.7\linewidth]{../mat/oscilaçao.pdf}
+\caption{Deviation of the Output Voltage}
+\label{fig:desvio}
+\end{figure}
+
+We can therefore conclude that our output voltage ripple is 0.0118 $V$.
+
+%=========================================================================================================================
+
+
