@@ -74,3 +74,19 @@ AV = (gB+gm2/gpi2*gB)/(gB+ge2+go2+gm2/gpi2*gB)*AV1
 AV_DB = 20*log10(abs(AV))
 ZI=ZI1
 ZO=1/(go2+gm2/gpi2*gB+ge2+gB)
+
+
+t=1:0.01:8
+
+f=AV_DB+0*t;
+
+h4 = figure ();
+plot (t, f, "g1");
+legend("Vo/Vi", "location","northeastoutside");
+
+xlabel ("log(f) [Hz]");
+ylabel ("Voltage [V],");
+
+hold off
+
+print (h4, "tensao.eps", "-depsc");
