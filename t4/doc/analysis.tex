@@ -1,8 +1,48 @@
 \section{Theoretical Analysis}
 \label{sec:analysis}
 
-\subsection{Full Wave Bridge Rectifier}
-For the theoretical analysis of the circuit we simplify the rectifier as a voltage source as shown in the circuit below:
+\subsection{Gain Stage}
+We start by analysing the circuit's operating point.
+First we replace the bias circuit with a Thévenin equivalent resistance and voltage source given by:
+
+\begin{equation}\label{eq:v_eq}
+\begin{cases}
+V_{eq}=\frac{R_{B2}}{R_{B1}+R_{B2}} V_{CC} \\
+R_B=\frac{R_{B2}R_{B1}}{R_{B1}+R_{B2}}\\
+\end{cases}
+\end{equation}
+
+Then we use mesh methods and the transistors relationships between currents to get the values of the circuit:
+
+\begin{equation}\label{eq:v_eq}
+\begin{cases}
+I_B=\frac{V_{eq}-V_{on}}{R_B+(1+\beta_f)R_{E}}\\
+I_C=\beta_f I_B\\
+I_E=(1+\beta_f)I_B\\
+V_C=V_{CC}-R_C I_C\\
+V_E=R_E I_E\\
+V_{CE}=V_O-V_E\\
+\end{cases}
+\end{equation}
+
+Now we need to solve the incremental circuit
+
+\begin{equation}\label{eq:v_eq}
+\begin{cases}
+\frac{v_o}{v_i}=\frac{R_B}{R_B+R_S} R_C \frac{R_E-g_m r_\pi r_o}{(r_o+R_C+R_E)(R_{BS}+r_\pi+R_E)+g_m R_E r_o r_\pi - R_E^2}\\
+R_{BS}=\frac{R_B R_S}{R_B+R_S}\\
+\end{cases}
+\end{equation}
+
+Which can be approximated to:
+
+\begin{equation}\label{eq:v_eq}
+\begin{cases}
+\frac{v_o}{v_i}=-\frac{R_B}{R_B+R_S} \frac{g_m R_C}{1+g_m R_E}\\
+\end{cases}
+\end{equation}
+
+
 
 \begin{figure}[H] \centering
 \includegraphics[width=0.7\linewidth]{../doc/cir_analysis.pdf}
