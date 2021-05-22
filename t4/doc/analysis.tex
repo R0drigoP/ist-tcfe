@@ -19,7 +19,7 @@ Then we use mesh methods and the transistors relationships between currents to g
 I_B=\frac{V_{eq}-V_{on}}{R_B+(1+\beta_f)R_{E}}\\
 I_C=\beta_f I_B\\
 I_E=(1+\beta_f)I_B\\
-V_C=V_{CC}-R_C I_C\\
+V_O=V_{CC}-R_C I_C\\
 V_E=R_E I_E\\
 V_{CE}=V_O-V_E\\
 \end{cases}
@@ -42,22 +42,39 @@ Which can be approximated to:
 \end{cases}
 \end{equation}
 
- Since we have capacitor $C_E$ in parallel with resisctor $R_E$, when charged we can consider it as a short circuit wich means $R_E=0$. It also makes a good approximate value.
- 
  Using the mesh method on the gain circuit we get equations for the output and input impedances:
  
  \begin{equation}\label{eq:v_eq}
 \begin{cases}
-Z_i=\frac{1}{\frac{1}{R_B} \frac{r_{o1}+R_{C}+R_{E}}{(r_{o1}+R_{C}+R_{E})(r_{\pi 1}+R_{E})+g_{m1} R_{E} r_{o1} r_{\pi 1} - R_{E}^2}}\\
-Z_o= \frac{1}{\frac{1}{R_C} +\frac{\frac{1}{R_E}+\frac{1}{R_{\pi 1}+R_{BS}}}{r_{o1}(\frac{1}{R_E}+\frac{1}{R_{\pi 1}+R_{BS}}+\frac{1}{R_{o1}}+ \frac{g_{m1} r_{\pi 1}}{R_{\pi 1}+R_{BS}})}}\\
+Z_I=\frac{1}{\frac{1}{R_B} \frac{r_{o1}+R_{C}+R_{E}}{(r_{o1}+R_{C}+R_{E})(r_{\pi 1}+R_{E})+g_{m1} R_{E} r_{o1} r_{\pi 1} - R_{E}^2}}\\
+Z_O= \frac{1}{\frac{1}{R_C} +\frac{\frac{1}{R_E}+\frac{1}{R_{\pi 1}+R_{BS}}}{r_{o1}(\frac{1}{R_E}+\frac{1}{R_{\pi 1}+R_{BS}}+\frac{1}{R_{o1}}+ \frac{g_{m1} r_{\pi 1}}{R_{\pi 1}+R_{BS}})}}\\
 \end{cases}
 \end{equation}
 
-
+ Since we have capacitor $C_E$ in parallel with resisctor $R_E$, when charged we can consider it as a short circuit wich means $R_E=0$ in the equations above.
+The values obtained for the output and input impedances and voltages is shown in table TAAABEEEELAAAA.
 
 \subsection{Output stage}
+We will consider that the input voltage in this stage is the output voltage of the gain stage. The reason we can make this approximation is explained at the end of this section.
+Just like in the last section we start by examine the circuit's operating point.  We use mesh analyses and current's relationships from the transistor's model again.
 
+\begin{equation}\label{eq:v_eq}
+\begin{cases}
+V_I=V_O\\
+I_{R_{out}}= \frac{V_{CC}-V_{EBON}-V_I}{R_{out}}\\
+V_{load}=V_I+ V_{EBON}\\
+\end{cases}
+\end{equation}
 
+Then again, we proceed for the incremental analyses
+
+\begin{equation}\label{eq:v_eq}
+\begin{cases}
+\frac{v_{load}}{v_i}=\frac{g_{m2}}{g_{m2}+g_{\pi 2}+g_{o2}+g_{out}}\\
+Z_{I2}= \frac{g_{m2}+g_{\pi 2}+ g_{o2}+g_{out}}{g_{\pi 2} (g_{\pi 2}+ g_{o2}+g_{out})}\\
+Z_{O2}= \frac{1}{g_{m2}+g_{\pi 2}+ g_{o2}+g_{out}}\\
+\end{cases}
+\end{equation}
 
 
 
