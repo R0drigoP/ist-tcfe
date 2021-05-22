@@ -9,7 +9,7 @@ Vin in 0 0 ac 1.0 sin(0 10m 1k)
 Rin in in2 100
 
 * input coupling capacitor
-Ci in2 base 0.5u
+Ci in2 base 1m
 
 * bias circuit
 R1 vcc base 70k
@@ -17,19 +17,19 @@ R2 base 0 10k
 
 * gain stage
 Q1 coll base emit BC547A
-Rc vcc coll 0.3k
+Rc vcc coll 0.4k
 Re emit 0 250
 
 * bypass capacitor
-Cb emit 0 100u
+Cb emit 0 2m
 
 
 * output stage
 Q2 0 coll emit2 BC557A
-Rout emit2 vcc 100
+Rout emit2 vcc 10
 
 * output coupling capacitor
-Co emit2 out 100u
+Co emit2 out 3m
 
 * load
 RL out 0 8
@@ -44,6 +44,9 @@ RL out 0 8
 tran 1e-5 1e-2
 *plot v(coll)
 *hardcopy vo1.ps vdb(coll)
+plot v(out)
+hardcopy vout.ps v(out)
+echo vout_FIG
 
 
 * frequency analysis
@@ -57,8 +60,8 @@ ac dec 10 10 100MEG
 
 *hardcopy vo2f.ps vdb(coll)
 
-hardcopy vout.ps vdb(out)
-echo vout_FIG
+*hardcopy vout.ps vdb(out)
+*echo vout_FIG
 
 let gain = vdb(out)-vdb(in2)
 plot gain
@@ -88,8 +91,8 @@ print bandwidth
 print maxgain
 echo sim_END
 
-let cost_res = 70+10+0.3+0.25+0.1
-let cost_cap = 0.5+100+100
+let cost_res = 70+10+0.4+0.25+0.01
+let cost_cap = 1000+2000+3000
 let cost = 0.2 + cost_res + cost_cap
 let merit = maxgain*bandwidth/(lowcutfreq*cost)
 

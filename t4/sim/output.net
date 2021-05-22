@@ -8,26 +8,26 @@ Vcc vcc 0 12.0
 Rin 0 in2 100
 
 * input coupling capacitor
-Ci in2 base 0.5u
+Ci in2 base 1m
 
 * bias circuit
 R1 vcc base 70k
-R2 base 0 20k
+R2 base 0 10k
 
 * gain stage
 Q1 coll base emit BC547A
-Rc vcc coll 0.3k
-Re emit 0 100
+Rc vcc coll 0.4k
+Re emit 0 250
 
 * bypass capacitor
-Cb emit 0 10u
+Cb emit 0 2m
 
 * output stage
 Q2 0 coll emit2 BC557A
-Rout emit2 vcc 100
+Rout emit2 vcc 10
 
 * output coupling capacitor
-Co emit2 out 10u
+Co emit2 out 3m
 
 VL out 0 1 ac 1.0 sin(0 10m 1k)
 
