@@ -42,7 +42,22 @@ Which can be approximated to:
 \end{cases}
 \end{equation}
 
- Since we have capacitor C_E in parallel with resisctor R_E, when charged we can consider it as a short circuit wich $means R_E=0$.
+ Since we have capacitor $C_E$ in parallel with resisctor $R_E$, when charged we can consider it as a short circuit wich means $R_E=0$. It also makes a good approximate value.
+ 
+ Using the mesh method on the gain circuit we get equations for the output and input impedances:
+ 
+ \begin{equation}\label{eq:v_eq}
+\begin{cases}
+Z_i=\frac{1}{\frac{1}{R_B} \frac{r_{o1}+R_{C}+R_{E}}{(r_{o1}+R_{C}+R_{E})(r_{\pi 1}+R_{E})+g_{m1} R_{E} r_{o1} r_{\pi 1} - R_{E}^2}}\\
+Z_o= \frac{1}{\frac{1}{R_C} +\frac{\frac{1}{R_E}+\frac{1}{R_{\pi 1}+R_{BS}}}{r_{o1}(\frac{1}{R_E}+\frac{1}{R_{\pi 1}+R_{BS}}+\frac{1}{R_{o1}}+ \frac{g_{m1} r_{\pi 1}}{R_{\pi 1}+R_{BS}})}}\\
+\end{cases}
+\end{equation}
+
+
+
+\subsection{Output stage}
+
+
 
 
 
