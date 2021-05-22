@@ -2,7 +2,7 @@
 \label{sec:introduction}
 
 % state the learning objective
-The objective of this laboratory assignment is to make an AC/DC converter, using resistors, capacitors and diodes. The built circuit can be seen in Figure \ref{fig:cir_intro}.
+The objective of this laboratory assignment is to make and analyse an audio amplifier circuit, using resistors, capacitors and transistors. The built circuit can be seen in Figure \ref{fig:cir_intro}.
 
 \begin{figure}[H] \centering
 \includegraphics[width=0.7\linewidth]{cir_intro.pdf}
@@ -11,7 +11,7 @@ The objective of this laboratory assignment is to make an AC/DC converter, using
 \end{figure}
 
 In Section \ref{sec:analysis}, a theoretical analysis of the circuit is
-presented. More precisely we used nodal analysis as well as incremental analysis on a equivalent circuit, to arrive to our results.
+presented. More precisely we examined the gain stage and the output stage separately, we will discuss why we are able to do this later, using mesh analysis as well as incremental analysis on equivalent circuits.
 In Section \ref{sec:simulation}, the circuit is analysed by simulation, using \textit{Ngspice}, and we study the same as in Section \ref{sec:analysis}. The results are also compared to the theoretical ones. The conclusions of this study are outlined in Section \ref{sec:conclusion}.
 \par
 The values of the circuit elementes that we used for both the theorethical analysis and simulation can be seen in table \ref{tab:intro_values}.
@@ -21,13 +21,17 @@ The values of the circuit elementes that we used for both the theorethical analy
   \begin{tabular}{|l|r|}
     \hline
         {\bf Variable} & {\bf Value} \\ \hline
-        $n$ & 10 \\ \hline
-        $R_1$ & 10 $k\Omega$ \\ \hline
-        $C$ & 600 $\mu F$ \\ \hline
-        $R_2$ & 6.0644 $k\Omega$ \\ \hline
+        $RE_1$ & 100 $\Omega$ \\ \hline
+        $RE_2$ & 250 $\Omega$ \\ \hline
+        $RC_1$ & 1 $k\Omega$ \\ \hline
+        $RB_1$ & 80 $k\Omega$ \\ \hline
+        $RB_2$ & 20 $k\Omega$ \\ \hline
+        $C_i$ & 1 $mF$ \\ \hline
+        $C_e$ & 10 $mF$ \\ \hline
+        $C_o$ & 10 $mF$ \\ \hline
   \end{tabular}
   \caption{Used values.}
   \label{tab:intro_values}
 \end{table}
 
-Since the number of diodes used was 18, the total cost of this circuit was 616.2644 MU.
+The total cost of this circuit was ...MU.
