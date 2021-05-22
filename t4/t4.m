@@ -51,8 +51,9 @@ ZO1 = 1/(1/ro1+1/RC1)
 %ouput stage
 BFP = 227.3
 VAFP = 37.2
-RE2 = 100
+RE2 = 250
 VEBON = 0.7
+Rl=8
 VI2 = VO1
 IE2 = (VCC-VEBON-VI2)/RE2
 IC2 = BFP/(BFP+1)*IE2
@@ -76,12 +77,51 @@ ZI=ZI1
 ZO=1/(go2+gm2/gpi2*gB+ge2+gB)
 
 
-t=1:0.01:8
+%frequency response
 
-f=AV_DB+0*t;
+ro2=1/go2;
+rpi2=1/gpi2;
+ci=1e-3;
+ce=1e-2;
+co=1e-2;
+RE1=100;
+i=1;
+vin=1
+
+for t1=1:0.1:8;
+
+
+w=2*pi*power(10,t1);
+ww(i)=t1;
+Zci=1./(j*w*ci);
+Zce=1./(j*w*ce);
+Zco=1./(j*w*co);
+
+Zeq1=1/(1/RE1+1/Zce);
+Zeq2=1/(1/RE2+1/(Rl+Zco));
+
+A=[RS+Zci+RB, -RB, 0,0,0,0,0;
+-RB, RB+rpi1+Zeq1, -Zeq1, 0,0,0,0;
+0, -Zeq1, Zeq1+ro1+RC1, -ro1, -RC1,0,0;
+0, rpi1*gm1, 0, 1, 0,0,0;
+0,0, -RC1, 0, rpi2+RC1+Zeq2, -Zeq2,0;
+0,0,0,0 -Zeq2, Zeq2+ro2, -ro2;
+0,0,0,0, rpi2*gm2, 0, 1;
+];
+
+B=[vin;0;0;0;0;0;0];
+
+X=A\B;
+
+gain(i)=(X(6)-X(5))*Zeq2/vin;
+gain_DB(i)=20*log10(abs(gain(i)));
+
+i=i+1;
+
+endfor
 
 h4 = figure ();
-plot (t, f, "g1");
+plot (ww, gain_DB, "g1");
 legend("Vo/Vi", "location","northeastoutside");
 
 xlabel ("log(f) [Hz]");
