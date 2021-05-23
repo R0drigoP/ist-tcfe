@@ -1,6 +1,11 @@
 \section{Theoretical Analysis}
 \label{sec:analysis}
 
+\begin{figure}[H] \centering
+\includegraphics[width=0.7\linewidth]{../doc/circuit_freq.pdf}
+\caption{Simplified circuit}
+\label{fig:simp_cir}
+\end{figure}
 
 In this section for the incremental analysis part, we analyse the simplified circuit seen in the image above. When it reaches equilibrium, the capacitors work as a short circuit and that's what we will approximate them to.
 
@@ -138,6 +143,17 @@ The values obtained for the final circuit are:
   \label{tab:sim1}
 \end{table}
 
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Voltage} & {\bf Value (V)} \\ \hline
+    \input{../mat/op4_tab.tex}
+  \end{tabular}
+  \caption{Operating Point Voltages}
+  \label{tab:OP}
+\end{table}
+
 \subsection{Frequency response}
 For the frequency response, we finally take into account the capacitors. Taking the circuit in \ref{fig:simp_cir} we use the mesh method to write the following system:
 
@@ -158,7 +174,7 @@ Solving this system for different frequencies, we get a graph of $gain(f)= \frac
 \begin{figure}[H] \centering
 \includegraphics[width=0.7\linewidth]{../mat/tensao.pdf}
 \caption{Frequency Response}
-\label{fig:simp_cir}
+\label{fig:freq}
 \end{figure}
 %=========================================================================================================================
 
