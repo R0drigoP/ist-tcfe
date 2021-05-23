@@ -2,12 +2,6 @@
 \label{sec:analysis}
 
 
-\begin{figure}[H] \centering
-\includegraphics[width=0.7\linewidth]{../doc/circuit_freq.pdf}
-\caption{Incremental analysis circuit}
-\label{fig:simp_cir}
-\end{figure}
-
 In this section for the incremental analysis part, we analyse the simplified circuit seen in the image above. When it reaches equilibrium, the capacitors work as a short circuit and that's what we will approximate them to.
 
 \subsection{Gain Stage}
@@ -62,7 +56,18 @@ Z_{O1}= \frac{1}{\frac{1}{R_C} +\frac{\frac{1}{R_E}+\frac{1}{R_{\pi 1}+R_{BS}}}{
 
  Since we have capacitor $C_E$ in parallel with resisctor $R_E$, when charged we can consider it as a short circuit wich means $R_E=0$ in the equations above.
  \par
-The values obtained for the output and input impedances and voltages is shown in table TAAABEEEELAAAA.
+The values obtained for the output and input impedances and voltages is:
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Variable} & {\bf Value} \\ \hline
+    \input{../mat/op1_tab.tex}
+  \end{tabular}
+  \caption{Gain stage values}
+  \label{tab:sim1}
+\end{table}
 
 \subsection{Output stage}
 We will consider that the input voltage in this stage is the output voltage of the gain stage. The reason we can make this approximation is explained at the end of this section.
@@ -87,7 +92,18 @@ Z_{O2}= \frac{1}{g_{m2}+g_{\pi 2}+ g_{o2}+g_{out}}\\
 \end{cases}
 \end{equation}
 
-The values obtained are also shown in the table TABELAAAA.
+The values obtained are:
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Variable} & {\bf Value} \\ \hline
+    \input{../mat/op2_tab.tex}
+  \end{tabular}
+  \caption{Output stage values}
+  \label{tab:sim1}
+\end{table}
 
 
 \subsection{Total circuit}
@@ -109,9 +125,18 @@ Z_O=\frac{1}{g_{o2}+\frac{g_{m2}}{g_{\pi 2}} g_B+g_{out}+g_B}\\
 \end{equation}
 
 Where B is an equivalent resistance $R_B=r_{\pi 2} + Z_{O1}$
-The values obtained in the circuit analysis are:
+The values obtained for the final circuit are:
 
-TABELAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Variable} & {\bf Value} \\ \hline
+    \input{../mat/op3_tab.tex}
+  \end{tabular}
+  \caption{Total circuit values}
+  \label{tab:sim1}
+\end{table}
 
 \subsection{Frequency response}
 For the frequency response, we finally take into account the capacitors. Taking the circuit in \ref{fig:simp_cir} we use the mesh method to write the following system:
@@ -130,9 +155,11 @@ I_5 r_{\pi 2} g_{m2} +I_7 = 0\\
 
 Solving this system for different frequencies, we get a graph of $gain(f)= \frac{(I_6 - I_5) Z_{eq2}}{v_{in}}$:
 
-GRAFICOOOOO
-
-
+\begin{figure}[H] \centering
+\includegraphics[width=0.7\linewidth]{../mat/tensao.pdf}
+\caption{Frequency Response}
+\label{fig:simp_cir}
+\end{figure}
 %=========================================================================================================================
 
 
