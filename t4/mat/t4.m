@@ -3,10 +3,10 @@
 VT=25e-3
 BFN=178.7
 VAFN=69.7
-RE1=100
-RC1=1000
-RB1=80000
-RB2=20000
+RE1=250
+RC1=400
+RB1=70000
+RB2=10000
 VBEON=0.7
 VCC=12
 RS=100
@@ -38,7 +38,7 @@ AVI_DB = 20*log10(abs(AV1))
 AV1simple =  - RSB/RS * gm1*RC1/(1+gm1*RE1)
 AVIsimple_DB = 20*log10(abs(AV1simple))
 
-RE1=100
+RE1=250
 ZI1 = 1/(1/RB+1/(((ro1+RC1+RE1)*(rpi1+RE1)+gm1*RE1*ro1*rpi1 - RE1^2)/(ro1+RC1+RE1)))
 ZX = ro1*((RSB+rpi1)*RE1/(RSB+rpi1+RE1))/(1/(1/ro1+1/(rpi1+RSB)+1/RE1+gm1*rpi1/(rpi1+RSB)))
 ZX = ro1*(   1/RE1+1/(rpi1+RSB)+1/ro1+gm1*rpi1/(rpi1+RSB)  )/(   1/RE1+1/(rpi1+RSB) ) 
@@ -51,7 +51,7 @@ ZO1 = 1/(1/ro1+1/RC1)
 %ouput stage
 BFP = 227.3
 VAFP = 37.2
-RE2 = 250
+RE2 = 10
 VEBON = 0.7
 Rl=8
 VI2 = VO1
@@ -82,13 +82,13 @@ ZO=1/(go2+gm2/gpi2*gB+ge2+gB)
 ro2=1/go2;
 rpi2=1/gpi2;
 ci=1e-3;
-ce=1e-2;
-co=1e-2;
-RE1=100;
+ce=2e-3;
+co=3e-3;
+RE1=250;
 i=1;
 vin=1
 
-for t1=1:0.1:8;
+for t1=0:0.1:8;
 
 
 w=2*pi*power(10,t1);
@@ -125,7 +125,7 @@ plot (ww, gain_DB, "g1");
 legend("Vo/Vi", "location","northeastoutside");
 
 xlabel ("log(f) [Hz]");
-ylabel ("Voltage [V],");
+ylabel ("Voltage [dB],");
 
 hold off
 
