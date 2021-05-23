@@ -12,24 +12,24 @@ Rin in in2 100
 Ci in2 base 1m
 
 * bias circuit
-R1 vcc base 80k
-R2 base 0 20k
+R1 vcc base 70k
+R2 base 0 10k
 
 * gain stage
 Q1 coll base emit BC547A
-Rc vcc coll 1k
-Re emit 0 100
+Rc vcc coll 0.4k
+Re emit 0 250
 
 * bypass capacitor
-Cb emit 0 1m
+Cb emit 0 2m
 
 
 * output stage
 Q2 0 coll emit2 BC557A
-Rout emit2 vcc 100
+Rout emit2 vcc 10
 
 * output coupling capacitor
-Co emit2 out 1u
+Co emit2 out 3m
 
 * load
 RL out 0 8
@@ -39,32 +39,80 @@ RL out 0 8
 
 .control
 
+set hcopypscolor=0
+set color0=white
+set color1=black
+set color2=red
+set color3=blue
+set color4=violet
+set color5=rgb:3/8/0
+set color6=rgb:4/0/0
+
+op
+echo op_TAB
+print all
+echo op_END
 
 * time analysis
 tran 1e-5 1e-2
-plot v(coll)
-hardcopy vo1.ps vdb(coll)
+*plot v(coll)
+*hardcopy vo1.ps vdb(coll)
+plot v(out)
+hardcopy vout.ps v(out)
+echo vout_FIG
 
 
 * frequency analysis
 ac dec 10 10 100MEG
-plot vdb(coll)
-plot vp(coll)
-hardcopy vo1f.ps vdb(coll)
+*plot vdb(coll)
+*plot vp(coll)
+*hardcopy vo1f.ps vdb(coll)
 
+*plot vdb(out)
+*plot vp(out)
 
+*hardcopy vo2f.ps vdb(coll)
 
-plot vdb(out)
-plot vp(out)
-hardcopy vo2f.ps vdb(coll)
+*hardcopy vout.ps vdb(out)
+*echo vout_FIG
 
-*input impedance in kohm
+let gain = vdb(out)-vdb(in2)
+plot gain
+hardcopy gain.ps gain
+echo gain_FIG
+
+*input impedance in ohm
 *print all
 
-plot abs(v(in2)[40]/vin#branch[40]/(-1000))
-print v(in2)[40]/vin#branch[40]/(-1000)
+let zin = abs(v(in2)[40]/vin#branch[40]/(-1))
+echo zin_TAB
+print zin
+echo zin_END
 
 *need a different setup to measure output impedance
+
+meas ac maxgain MAX gain
+let gain_search = maxgain - 3
+meas ac lowcutfreq WHEN gain=gain_search RISE=1
+meas ac highcutfreq WHEN gain=gain_search FALL=1
+let bandwidth=highcutfreq - lowcutfreq
+
+echo sim_TAB
+print lowcutfreq
+print highcutfreq
+print bandwidth
+print maxgain
+echo sim_END
+
+let cost_res = 70+10+0.4+0.25+0.01
+let cost_cap = 1000+2000+3000
+let cost = 0.2 + cost_res + cost_cap
+let merit = maxgain*bandwidth/(lowcutfreq*cost)
+
+echo merit_TAB
+print cost
+print merit
+echo merit_END
 
 .endc 
 
