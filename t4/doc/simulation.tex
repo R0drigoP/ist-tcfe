@@ -5,45 +5,56 @@ In this section of the lab assignment, the main goal was to improve the amplifie
 \par
 In order to decrease the effect of an eventual 0V DC component in the input voltage source, it is important to have an input coupling capacitor.
 \par
-We also used a bypass capacitor with the objective of attenuating the effects of $R_E$, reducing the circuit's impedance for high frequencies. This happens because, for higher frequencies, a capacitor can be aproximated to a short circuit, so the current will flow through instead of flowing exclusively through the resistor. By adding this element, we can reduce the thermal effect without compromising the total impedance for higher frequencies.
+We also used a bypass capacitor with the objective of attenuating the effects of $R_E$, reducing the circuit's impedance for high frequencies. This happens because, for higher frequencies, a capacitor can be aproximated to a short circuit, so the current will flow through it instead of flowing only through the resistor. By adding this element, we can reduce the thermal effect without compromising the total impedance for higher frequencies.
 \par
 It is also important to notice that the function of $R_C$ is to regulate the output signal. However, we need to be careful while doing so, because we can significantly decrease the gain.
 \par
 For last, the output stage's function is to decrease as much as possible the output impedance, while maintaining a gain of approximately 1.
 \par
-With all this said, in the table below we can see the total input and output impedances of the circuit
+With all this said, in the table below we can see the operating point analysis results
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Variable} & {\bf Value} \\ \hline
+    \input{../sim/op_tab}
+  \end{tabular}
+  \caption{Operating point analysis.}
+\end{table}
+
+In the table below, we can see the total input and output impedances of the circuit
 
 \begin{table}[H]
   \centering
   \begin{tabular}{|l|r|}
     \hline    
     {\bf Variable} & {\bf Value [$\Omega$]} \\ \hline
-    \input{../sim/zin_tab.tex}
-    \input{../sim/zout_tab.tex}
+    \input{../sim/zin_tab}
+    \input{../sim/zout_tab}
   \end{tabular}
   \caption{Input and output impedances.}
-  \label{tab:sim1}
 \end{table}
 
-As we wanted, the input impeadance is high and the output impeadance is low. However, even though the output impedance is lower than the resistance of the load, we consider it to be higher than desirable.
-\par
+As we wanted, the input impeadance is high and the output impeadance is low. However, even though the output impedance is lower than the resistance of the load, we consider it to be higher than desirable, but we couldn't achieve such thing, in order to maintain a good lower cutoff frequency and gain.
+
 We can now analyze the frequency response of the circuit, as seen in the image below
 
 \begin{figure}[H] \centering
 \includegraphics[width=0.7\linewidth]{../sim/gain.pdf}
 \caption{Frequency Response.}
-\label{fig:sim_deviation}
 \end{figure}
+
+
 
 It was also plotted a transient analysis for f = 1kHz, 
 
 \begin{figure}[H] \centering
 \includegraphics[width=0.7\linewidth]{../sim/vout.pdf}
 \caption{Trasient analysis for f = 1 kHz.}
-\label{fig:sim_deviation}
 \end{figure}
 
-By observing the transient analysis, we can see that there are no major losses of the original signal, as the output signal was still a sine wave. The initial oscillations correspond to the transitory period.
+By observing the transient analysis, we can see that there are no major losses of the original signal, as the output signal was still a sine wave.
 \par
 By analysing the frequency response, we can get very important informations about how the circuit behaves, like its lower and higher cutoff frequencies, its bandwidth and its gain. We can see all of the obtained results in the table below
 
@@ -51,11 +62,10 @@ By analysing the frequency response, we can get very important informations abou
   \centering
   \begin{tabular}{|l|r|}
     \hline    
-    {\bf Variable} & {\bf Value [$\Omega$]} \\ \hline
-    \input{../sim/sim_tab.tex}
+    {\bf Variable} & {\bf Value} \\ \hline
+    \input{../sim/sim_tab}
   \end{tabular}
-  \caption{Input and output impedances.}
-  \label{tab:sim1}
+  \caption{Important values from the frequency response.}
 \end{table}
 
 We can finally calculate the total cost of the circuit to obtain the merit figure of this circuit. Both these values are presented in the table below
@@ -64,15 +74,13 @@ We can finally calculate the total cost of the circuit to obtain the merit figur
   \centering
   \begin{tabular}{|l|r|}
     \hline    
-    {\bf Variable} & {\bf Value [$\Omega$]} \\ \hline
-    \input{../sim/merit_tab.tex}
+    {\bf Variable} & {\bf Value} \\ \hline
+    \input{../sim/merit_tab}
   \end{tabular}
-  \caption{Input and output impedances.}
-  \label{tab:sim1}
+  \caption{Total cost and merit.}
 \end{table}
 
-Comparing these results with those obtained in the theorethical analysis, we can conclude that both differ a bit. In the theorethical ones, the final mean voltage wasn't a perfect 12V in contrast with the ones obtained in the simulation, and the ripple was also higher. This was to be expected, since \textit{Ngspice} uses a diode model much closer to the reality comparing to the ones used in theorethical analysis, since did aproximations in order to obtain simpler equations.
-
+Comparing these results with those obtained in the theorethical analysis, we can conclude that both differ a bit. In the operating point, the results were really close, which was to be expected. The total input and output impedances were close, but not exactly equal. The frequency response wasn't exactly equal too, specially in the high frequencies, since we aproximated the higher cutoff frequency to be in infinity. This was all due to aproximations that we made in the transistor model while doing the theorethical analisys.
 
 
 
