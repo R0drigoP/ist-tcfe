@@ -112,7 +112,7 @@ The values obtained are:
 
 
 \subsection{Total circuit}
-For this section we finally consider the circuit as a whole and join the two stages. Using the voltage divider law on a simple 1 voltage source/2 resistors circuit we get:
+For this section we finally consider the circuit as a whole and join the two stages. Using the voltage divider law on a simple 1 voltage source and 2 resistors circuit we get:
 
 \begin{equation}\label{eq:approx}
 V_O=\frac{Z_O}{Z_O+Z_{eq}}V_I\\
@@ -142,6 +142,8 @@ The values obtained for the final circuit are:
   \caption{Total circuit values}
   \label{tab:sim1}
 \end{table}
+
+In the table below, we can see the node voltage in the operating point analysis
 
 \begin{table}[H]
   \centering
@@ -176,6 +178,9 @@ Solving this system for different frequencies, we get a graph of $gain(f)= \frac
 \caption{Frequency Response}
 \label{fig:freq}
 \end{figure}
+
+Where we considered the approximation of the higher cutoff frequency to be in infinity.
+
 %=========================================================================================================================
 
 

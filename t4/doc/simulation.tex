@@ -1,7 +1,7 @@
 \section{Simulation Analysis}
 \label{sec:simulation}
 
-In this section of the lab assignment, the main goal was to improve the amplifier circuit, based on the given script. For that, it was important to understand the importance that some key components have in the output. One of the most important element of the gain stage it the transistor. Its purpose is to increase the gain. In order to produce satisfactory results, it is important that it is working in Forward Active Region. This is ensured by choosing appropriate values for $V_{cc}$ voltage source and resistor $R_1$ and $R_2$.
+In this section of the lab assignment, the main goal was to improve the amplifier circuit, based on the given script. For that, it was important to understand the importance that some key components have in the output. One of the most important element of the gain stage is the transistor. Its purpose is to increase the gain. In order to produce satisfactory results, it is important that it is working in Forward Active Region. This is ensured by choosing appropriate values for $V_{cc}$ voltage source and resistors $R_1$ and $R_2$.
 \par
 In order to decrease the effect of an eventual 0V DC component in the input voltage source, it is important to have an input coupling capacitor.
 \par
@@ -22,6 +22,8 @@ With all this said, in the table below we can see the operating point analysis r
   \end{tabular}
   \caption{Operating point analysis.}
 \end{table}
+
+This results were similar to the ones obtained in the theorethical analysis.
 
 In the table below, we can see the total input and output impedances of the circuit
 
@@ -80,7 +82,7 @@ We can finally calculate the total cost of the circuit to obtain the merit figur
   \caption{Total cost and merit.}
 \end{table}
 
-Comparing these results with those obtained in the theorethical analysis, we can conclude that both differ a bit. In the operating point, the results were really close, which was to be expected. The total input and output impedances were close, but not exactly equal. The frequency response wasn't exactly equal too, specially in the high frequencies, since we aproximated the higher cutoff frequency to be in infinity. This was all due to aproximations that we made in the transistor model while doing the theorethical analisys.
+Comparing these results with those obtained in the theorethical analysis, we can conclude that they differ a bit. In the operating point, the results were really close, which was to be expected. The total input and output impedances were close, but not exactly equal. The frequency response wasn't exactly equal too, specially in the high frequencies, since we aproximated the higher cutoff frequency to be in infinity. This was all due to aproximations that we made in the transistor model while doing the theorethical analisys.
 
 
 
