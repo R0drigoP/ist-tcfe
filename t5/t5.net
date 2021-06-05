@@ -53,13 +53,25 @@ Vcc vcc 0 5.0
 Vee vee 0 -5.0
 Vin in 0 0 ac 1.0 sin(0 10m 1k)
 
-X1 0 inv_in vcc vee out uA741
+X1 ninv_in inv_in vcc vee out uA741
 
-R1 in inv_in 1000
-R2 inv_in out 10000
+*High pass filter stage
+C1 in ninv_in 220n
+R1 0 ninv_in 10k
+R1p 0 ninv_in 1k
+
+*Amplification
+R2 0 inv_in 10k
+R2p 0 inv_in 1k
+R3 inv_in s3 100k
+R3s s3 out 100k
+
+*Low Pass Filter Stage
+R4 out out2 0
+C2 out2 0 220n
 
 * load
-RL out 0 8
+RL out2 0 8
 
 .op
 .end
@@ -70,20 +82,44 @@ print all
 
 * time analysis
 tran 1e-5 1e-2
-plot v(out)
-hardcopy vo1.ps vdb(out)
+*plot v(out2)
+*hardcopy vo1.ps vdb(out)
 
 
 * frequency analysis
 ac dec 10 10 100MEG
-plot vdb(out)
-plot vp(out)
-hardcopy vo1f.ps vdb(out)
+plot vdb(out2) - vdb(in)
+*plot vp(out2)
+*hardcopy vo1f.ps vdb(out)
 
 *input impedance in kohm
-print v(in)[40]/R1[i]/1000
+*print v(in)[40]/R1[i]/1000
 
-*need a different setup to measure output impedance
+*=========================================================
+
+let gain = vdb(out2)
+let gainlinear = v(out2)/v(in)
+
+let inzimpedance = v(in)[40]/vin#branch[40]*(-1)
+
+meas ac maxout MAX vdb(out2) from=100 to=100000
+meas ac gainfinal MAX gain from=100 to=100000
+let allign=gainfinal-3
+meas ac lowfrequence WHEN gain=allign RISE=1
+meas ac highfrequence WHEN gain=allign FALL=1
+let centerfrequency1=lowfrequence+(highfrequence-lowfrequence)/2
+let centerfrequency=sqrt(lowfrequence*highfrequence)
+meas ac fmax WHEN gain=gainfinal
+
+meas ac gainfinallinear MAX gainlinear from=100 to=100000
+
+echo "valsim_TAB"
+print lowfrequence
+print highfrequence
+print centerfrequency
+print gainfinal
+echo "valsim_END"
+
 
 .endc 
 

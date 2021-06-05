@@ -1,0 +1,35 @@
+\section{Introduction}
+\label{sec:introduction}
+
+% state the learning objective
+The objective of this laboratory assignment is to make and analyse an audio amplifier circuit, using resistors, capacitors and transistors. The built circuit can be seen in Figure \ref{fig:cir_intro}.
+
+\begin{figure}[H] \centering
+\includegraphics[width=0.7\linewidth]{circuit.pdf}
+\caption{Analyzed circuit.}
+\label{fig:cir_intro}
+\end{figure}
+
+In Section \ref{sec:analysis}, a theoretical analysis of the circuit is
+presented. More precisely we examined the gain stage and the output stage separately, we will discuss why we are able to do this later, using mesh analysis as well as incremental analysis on equivalent circuits.
+In Section \ref{sec:simulation}, the circuit is analysed by simulation, using \textit{Ngspice}, and we study the same as in Section \ref{sec:analysis}. The results are also compared to the theoretical ones. The conclusions of this study are outlined in Section \ref{sec:conclusion}.
+\par
+The values of the circuit elements that we used for both the theorethical analysis and simulation can be seen in table \ref{tab:intro_values}.
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline
+        {\bf Variable} & {\bf Value} \\ \hline
+        $R_1$ & 70 $k\Omega$ \\ \hline
+        $R_2$ & 10 $k\Omega$ \\ \hline
+        $R_C$ & 0.4 $k\Omega$ \\ \hline
+        $R_E$ & 250 $\Omega$ \\ \hline
+        $R_{out}$ & 10 $\Omega$ \\ \hline
+        $C_i$ & 1 $mF$ \\ \hline
+        $C_b$ & 2 $mF$ \\ \hline
+        $C_o$ & 3 $mF$ \\ \hline
+  \end{tabular}
+  \caption{Used values.}
+  \label{tab:intro_values}
+\end{table}
