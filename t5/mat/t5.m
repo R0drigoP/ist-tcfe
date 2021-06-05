@@ -52,14 +52,26 @@ Zi=abs(Z1+R1)
 
 h4 = figure ();
 plot (t, arg_VoVi, "g2");
-legend("Vo/Vi", "location","northeastoutside");
+legend("arg(Vo/Vi)", "location","northeastoutside");
 
 xlabel ("log(f) [Hz]");
 ylabel ("Voltage [dB],");
 
 h5 = figure ();
 plot (t2, VoVi, "g1");
-legend("Vo/Vi", "location","northeastoutside");
+legend("|Vo/Vi|", "location","northeastoutside");
 
 xlabel ("log(f) [Hz]");
 ylabel ("Voltage [dB],");
+
+print (h4, "phase.eps", "-depsc");
+print (h5, "gain.eps", "-depsc");
+
+printf("op1_TAB\n")
+printf("$Lf$ = %.15e\n", FL)
+printf("$Uf$ = %.15e\n", FH)
+printf("$Cf$ = %.15e\n", FC)
+printf("$Gain$ = %.15e\n", g_fc)
+printf("$Z_{out}$ = %.15e\n", Zo)
+printf("$Z_i$ = %.15e\n", Zi)
+printf("op1_END\n")
