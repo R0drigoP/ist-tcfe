@@ -14,7 +14,7 @@ data2: ngspice2.log
 	$(eval NGSTABS=$(shell grep _TAB $< | sed 's/_TAB//g' | sed ':a;N;$!ba;s/\n/ /g'))
 	$(foreach i, $(NGSTABS), sed -n '/^$i_TAB/,/^$i_END/{p;/^$i_END/q}' $< | grep -v $i_TAB | grep -v $i_END| sed 's/\=/\&/g' | sed 's/\#/\-/g' | sed 's/$$/\\\\ \\hline/g' > $i_tab.tex;)
 
-ngspice1.log: ../sim/t4.net  
+ngspice1.log: ../sim/t5.net  
 	ngspice -b $< -o $@
 
 ngspice2.log: ../sim/output.net  
