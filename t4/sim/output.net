@@ -38,8 +38,7 @@ VL out 0 1 ac 1.0 sin(0 10m 1k)
 
 * frequency analysis
 ac dec 10 10 100MEG
-<<<<<<< HEAD:t4/sim/output.net
-=======
+
 plot vdb(coll)
 plot vp(coll)
 hardcopy vo1f.ps vdb(coll)
@@ -57,7 +56,6 @@ plot abs(v(in2)/vin#branch/(-1000))
 print v(in2)[40]/vin#branch[40]/(-1000)
 
 *need a different setup to measure output impedance
->>>>>>> 322aa190fd8dc4f4e30d079abdc9dd407ba1cdd9:t4/t4.net
 
 *output impedance in ohm
 let zout = abs(v(out)[40]/vL#branch[40]/(-1))
