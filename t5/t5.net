@@ -82,8 +82,13 @@ print all
 
 * time analysis
 tran 1e-5 1e-2
+<<<<<<< HEAD
 *plot v(out2)
 *hardcopy vo1.ps vdb(out)
+=======
+plot v(out)
+hardcopy vo1.ps v(out)
+>>>>>>> 4a593515b7a4be1157e8e6f291a96f26a5222f75
 
 
 * frequency analysis
@@ -94,6 +99,7 @@ plot vdb(out2) - vdb(in)
 
 *input impedance in kohm
 *print v(in)[40]/R1[i]/1000
+<<<<<<< HEAD
 
 *=========================================================
 
@@ -119,6 +125,8 @@ print highfrequence
 print centerfrequency
 print gainfinal
 echo "valsim_END"
+=======
+>>>>>>> 4a593515b7a4be1157e8e6f291a96f26a5222f75
 
 
 .endc 
