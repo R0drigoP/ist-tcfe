@@ -51,11 +51,12 @@
 
 Vcc vcc 0 10.0
 Vee vee 0 -10.0
+Vin in 0 0 ac 1.0 sin(0 10m 1k)
 
 X1 ninv_in inv_in vcc vee out uA741
 
 *High pass filter stage
-C1 0 ninv_in 220n
+C1 in ninv_in 220n
 R1 0 ninv_in 1k
 
 *Amplification
@@ -69,10 +70,10 @@ R3s2 s2 out 100k
 *Low Pass Filter Stage
 R4 out out2 1k
 R4p1 out out2 1k
-C2 out2 0 2u
+C2 out2 0 1u
 
-*Test source
-Vt out2 0 0 ac 1.0 sin(0 10m 1k)
+* load
+*RL out2 0 8
 
 .op
 .end
@@ -81,12 +82,47 @@ Vt out2 0 0 ac 1.0 sin(0 10m 1k)
 
 print all
 
+* time analysis
+tran 1e-5 1e-2
+plot v(out2)
+*hardcopy vo1.ps vdb(out)
+
 
 * frequency analysis
 ac dec 10 10 100MEG
+plot vdb(out2) - vdb(in)
+set units = degrees
+plot ph(out2)
+*plot vp(out2)
+*hardcopy vo1f.ps vdb(out)
 
-*output impedance
-let zout = abs(v(out2)[20]/Vt#branch[20])
-print zout
+*input impedance in kohm
+*print v(in)[40]/R1[i]/1000
 
-.endc
+*=========================================================
+
+let gain = vdb(out2)
+let gainlinear = v(out2)/v(in)
+
+meas ac gainfinal MAX gain from=100 to=100000
+let allign=gainfinal-3
+meas ac lowfrequency WHEN gain=allign RISE=1
+meas ac highfrequency WHEN gain=allign FALL=1
+let centerfrequency=sqrt(lowfrequency*highfrequency)
+
+echo "valsim_TAB"
+print centerfrequency
+print gainfinal; dB
+echo "valsim_END"
+
+let gaindev = 100 - abs(v(out2)[20]/v(in)[20]); linear
+let freqdev = abs(1000 - centerfrequency)
+
+print gaindev
+print freqdev
+
+let zin = abs(v(in)[20]/vin#branch[20])
+print zin
+
+.endc 
+
