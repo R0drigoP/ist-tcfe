@@ -28,7 +28,7 @@ R4=0.5e3;
 #gain_DB(i)=20*log10(abs(gain(i)));
 
 z=(1/Z1*(1+R3/R2)/(1/Z1+1/R1))/(1+R4*1/Z2);
-arg_VoVi(i)=arg( z );
+arg_VoVi(i)=arg( z )*180/pi;
 VoVi(i)=20*log10(abs( z ));
 
 t(i)=t1;
@@ -55,7 +55,7 @@ plot (t, arg_VoVi, "g2");
 legend("arg(Vo/Vi)", "location","northeastoutside");
 
 xlabel ("log(f) [Hz]");
-ylabel ("Voltage [dB],");
+ylabel ("Phase [degrees],");
 
 h5 = figure ();
 plot (t2, VoVi, "g1");
