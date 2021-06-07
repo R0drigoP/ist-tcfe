@@ -46,7 +46,6 @@
 .ends
 
 
-
 .options savecurrents
 
 Vcc vcc 0 10.0
@@ -62,14 +61,11 @@ R1 0 ninv_in 1k
 R2 0 inv_in 10k
 R2p1 0 inv_in 10k
 R2p2 0 inv_in 10k
-R3 inv_in s1 100k
-R3s1 s1 s2 100k
-R3s2 s2 out 100k
+R3 inv_in out 300k
 
 *Low Pass Filter Stage
-R4 out out2 1k
-R4p1 out out2 1k
-C2 out2 0 2u
+R4 out out2 0.5k
+C2 out2 0 220n
 
 *Test source
 Vt out2 0 0 ac 1.0 sin(0 10m 1k)
@@ -87,6 +83,8 @@ ac dec 10 10 100MEG
 
 *output impedance
 let zout = abs(v(out2)[20]/Vt#branch[20])
+echo zout_TAB
 print zout
+echo zout_END
 
 .endc

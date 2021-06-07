@@ -1,31 +1,38 @@
 \section{Simulation Analysis}
 \label{sec:simulation}
 
-In this section of the lab assignment, the main goal was to improve the amplifier circuit, based on the given script. For that, it was important to understand the importance that some key components have in the output. One of the most important element of the gain stage is the transistor. Its purpose is to increase the gain. In order to produce satisfactory results, it is important that it is working in Forward Active Region. This is ensured by choosing appropriate values for $V_{cc}$ voltage source and resistors $R_1$ and $R_2$.
-\par
-In order to decrease the effect of an eventual 0V DC component in the input voltage source, it is important to have an input coupling capacitor.
-\par
-We also used a bypass capacitor with the objective of attenuating the effects of $R_E$, reducing the circuit's impedance for high frequencies. This happens because, for higher frequencies, a capacitor can be aproximated to a short circuit, so the current will flow through it instead of flowing only through the resistor. By adding this element, we can reduce the thermal effect without compromising the total impedance for higher frequencies.
-\par
-It is also important to notice that the function of $R_C$ is to regulate the output signal. However, we need to be careful while doing so, because we can significantly decrease the gain.
-\par
-For last, the output stage's function is to decrease as much as possible the output impedance, while maintaining a gain of approximately 1.
-\par
-With all this said, in the table below we can see the operating point analysis results
+The main goal of this section was to improve the bandpass filter circuit for a specific central frequency, and a specific gain in dB. In order to find these values, we plotted the frequency response of the circuit, as we can see in the figure below
+
+\begin{figure}[H] \centering
+\includegraphics[width=0.7\linewidth]{../sim/gain.pdf}
+\caption{Frequency Response.}
+\end{figure}
+
+The obtained values for these quantities is shown in the table below
 
 \begin{table}[H]
   \centering
   \begin{tabular}{|l|r|}
     \hline    
-    {\bf Variable} & {\bf Value} \\ \hline
-    \input{../sim/op_tab}
+    {\bf Variable} & {\bf Value[Hz or dB]} \\ \hline
+    \input{../sim/simval_tab}
   \end{tabular}
-  \caption{Operating point analysis.}
+  \caption{Obtained frequences and gain.}
 \end{table}
 
-This results were similar to the ones obtained in the theorethical analysis.
+This results were similar to the ones obtained in the theorethical analysis, but not exactly the same. This is due to the differences in the Op-Amp model used in the two analysis.
+\par
 
-In the table below, we can see the total input and output impedances of the circuit
+We can also see the frequency response in the figure below, but this time for the phase in degrees
+
+\begin{figure}[H] \centering
+\includegraphics[width=0.7\linewidth]{../sim/phase.pdf}
+\caption{Frequency Response.}
+\end{figure}
+
+This is one of the biggest differences when compared to the results obtained in the theorethical analysis. This can can be explained by the fact that \textit{Ngspice} maintains its angles in the interval from -180º to 180º, and its Op-Amp model adds two more poles, which is not considered on the theorethical analysis. 
+\par
+In the table below, we can see the total input and output impedances of the circuit. We want to have a high input impedance and a low output impedance. 
 
 \begin{table}[H]
   \centering
@@ -38,53 +45,19 @@ In the table below, we can see the total input and output impedances of the circ
   \caption{Input and output impedances.}
 \end{table}
 
-As we wanted, the input impeadance is high and the output impeadance is low. However, even though the output impedance is lower than the resistance of the load, we consider it to be higher than desirable, but we couldn't achieve such thing, in order to maintain a good lower cutoff frequency and gain.
-
-We can now analyze the frequency response of the circuit, as seen in the image below
-
-\begin{figure}[H] \centering
-\includegraphics[width=0.7\linewidth]{../sim/gain.pdf}
-\caption{Frequency Response.}
-\end{figure}
-
-
-
-It was also plotted a transient analysis for f = 1kHz, 
-
-\begin{figure}[H] \centering
-\includegraphics[width=0.7\linewidth]{../sim/vout.pdf}
-\caption{Trasient analysis for f = 1 kHz.}
-\end{figure}
-
-By observing the transient analysis, we can see that there are no major losses of the original signal, as the output signal was still a sine wave.
+As we wanted, we achived a high input impedance. However, the outout impedance wasn´t very low, due to the resistor in paralel with the Op-Amp.
 \par
-By analysing the frequency response, we can get very important informations about how the circuit behaves, like its lower and higher cutoff frequencies, its bandwidth and its gain. We can see all of the obtained results in the table below
+Finally, the gain and central frequency aswell as the circuit's cost and the total merit are presented in the table below
 
 \begin{table}[H]
   \centering
   \begin{tabular}{|l|r|}
     \hline    
-    {\bf Variable} & {\bf Value} \\ \hline
-    \input{../sim/sim_tab}
-  \end{tabular}
-  \caption{Important values from the frequency response.}
-\end{table}
-
-We can finally calculate the total cost of the circuit to obtain the merit figure of this circuit. Both these values are presented in the table below
-
-\begin{table}[H]
-  \centering
-  \begin{tabular}{|l|r|}
-    \hline    
-    {\bf Variable} & {\bf Value} \\ \hline
+    {\bf Variable} & {\bf Value]} \\ \hline
     \input{../sim/merit_tab}
   \end{tabular}
-  \caption{Total cost and merit.}
+  \caption{Cost and merit.}
 \end{table}
-
-Comparing these results with those obtained in the theorethical analysis, we can conclude that they differ a bit. In the operating point, the results were really close, which was to be expected. The total input and output impedances were close, but not exactly equal. The frequency response wasn't exactly equal too, specially in the high frequencies, since we aproximated the higher cutoff frequency to be in infinity. This was all due to aproximations that we made in the transistor model while doing the theorethical analisys.
-
-
 
 
 

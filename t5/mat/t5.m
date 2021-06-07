@@ -46,7 +46,7 @@ FC=sqrt(FL*FH);
 s=j*2*pi*FC;
 Z1=1/(s*c1);
 Z2=1/(s*c2);
-g_fc=abs( (1/Z1*(1+R3/R2)/(1/Z1-1/R1))/(1+R4*1/Z2) )
+g_fc=20*log10(abs( (1/Z1*(1+R3/R2)/(1/Z1-1/R1))/(1+R4*1/Z2) ));
 Zo=abs(1/(1/Z2+1/R4))
 Zi=abs(Z1+R1)
 

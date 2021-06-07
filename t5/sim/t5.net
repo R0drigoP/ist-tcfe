@@ -63,14 +63,11 @@ R1 0 ninv_in 1k
 R2 0 inv_in 10k
 R2p1 0 inv_in 10k
 R2p2 0 inv_in 10k
-R3 inv_in s1 100k
-R3s1 s1 s2 100k
-R3s2 s2 out 100k
+R3 inv_in out 300k
 
 *Low Pass Filter Stage
-R4 out out2 1k
-R4p1 out out2 1k
-C2 out2 0 1u
+R4 out out2 0.5k
+C2 out2 0 220n
 
 * load
 *RL out2 0 8
@@ -84,7 +81,7 @@ print all
 
 * time analysis
 tran 1e-5 1e-2
-plot v(out2)
+*plot v(out2)
 *hardcopy vo1.ps vdb(out)
 
 
@@ -92,13 +89,13 @@ plot v(out2)
 ac dec 10 10 100MEG
 plot vdb(out2) - vdb(in)
 set units = degrees
-plot ph(out2)
-*plot vp(out2)
-*hardcopy vo1f.ps vdb(out)
+*plot ph(out2)
 
-*input impedance in kohm
-*print v(in)[40]/R1[i]/1000
+hardcopy gain.ps vdb(out2)
+echo gain_FIG
 
+hardcopy phase.ps ph(out2)
+echo phase_FIG
 *=========================================================
 
 let gain = vdb(out2)
@@ -110,11 +107,6 @@ meas ac lowfrequency WHEN gain=allign RISE=1
 meas ac highfrequency WHEN gain=allign FALL=1
 let centerfrequency=sqrt(lowfrequency*highfrequency)
 
-echo "valsim_TAB"
-print centerfrequency
-print gainfinal; dB
-echo "valsim_END"
-
 let gaindev = 100 - abs(v(out2)[20]/v(in)[20]); linear
 let freqdev = abs(1000 - centerfrequency)
 
@@ -122,7 +114,33 @@ print gaindev
 print freqdev
 
 let zin = abs(v(in)[20]/vin#branch[20])
+
+echo simval_TAB
+print lowfrequency
+print highfrequency
+print centerfrequency
+print gainfinal
+echo simval_END
+
+echo zin_TAB
 print zin
+echo zin_END
+
+let cost_trans_opamp = 2*0.1
+let cost_diode_opamp = 5*0.1
+let cost_res_opamp = 100 + 2*5.305 + 2*1.836 + 13.19*1e3 + 0.05 + 0.01 + 18.16  
+let cost_cap_opamp = (8.661 + 30)*1e-6
+let cost_opamp = cost_cap_opamp + cost_res_opamp + cost_diode_opamp + cost_trans_opamp
+let cost_res = 3*100 + 3*10 + 3*1 
+let cost_cap = 2*220*1e-3
+let cost = cost_opamp + cost_res + cost_cap
+
+let merit = 1/(cost*(gaindev*freqdev + 1e-6))
+
+echo merit_TAB
+print cost
+print merit
+echo merit_END
 
 .endc 
 
